@@ -1,4 +1,4 @@
-package com.example.bibliotecadelibros20.view.fragments;
+package com.example.bibliotecadelibros20.view.fragments.usuario;
 
 import android.os.Bundle;
 
@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.bibliotecadelibros20.R;
 import com.example.bibliotecadelibros20.databinding.FragmentUsuPrestarLibroBinding;
 
 public class UsuPrestarLibroFragment extends Fragment {

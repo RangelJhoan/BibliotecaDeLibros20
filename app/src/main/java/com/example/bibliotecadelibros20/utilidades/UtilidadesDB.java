@@ -8,7 +8,7 @@ public class UtilidadesDB {
     public static final String CAMPO_DESCRIPCION = "descripcion";
 
     //ATRIBUTOS DEL USUARIO
-    public static final String TABLA_USUARIO = "usuario";
+    public static final String TABLA_USUARIO = "com/example/bibliotecadelibros20/view/fragments/usuario";
     public static final String CAMPO_ID_USUARIO = "id";
     public static final String CAMPO_NOMBRE = "nombre";
     public static final String CAMPO_CORREO_ELECTRONICO = "correo_electronico";

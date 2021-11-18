@@ -9,21 +9,33 @@ import androidx.annotation.Nullable;
 import com.example.bibliotecadelibros20.utilidades.UtilidadesDB;
 
 public class ConexionSQLiteHelper extends SQLiteOpenHelper {
-    private static ConexionSQLiteHelper instancia = null;
 
-    public ConexionSQLiteHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+    private static ConexionSQLiteHelper instancia = null;
+    private Context mCxt;
+    //PARAMETROS CONEXIÓN
+    private static final String DATABASE_NAME = "bibliotecadelibros";
+    private static final int DATABASE_VERSION = 1;
+
+    public static ConexionSQLiteHelper getInstance(Context ctx){
+        if(instancia == null){
+            instancia = new ConexionSQLiteHelper(ctx.getApplicationContext());
+        }
+        return instancia;
+    }
+
+    private ConexionSQLiteHelper(@Nullable Context ctx) {
+        super(ctx, DATABASE_NAME, null, DATABASE_VERSION);
+        this.mCxt = ctx;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(UtilidadesDB.CREAR_TABLA_AUTOR);
         db.execSQL(UtilidadesDB.CREAR_TABLA_TIPO_USUARIO);
         db.execSQL(UtilidadesDB.CREAR_TABLA_USUARIO);
         db.execSQL(UtilidadesDB.CREAR_TABLA_AUTOR);
         db.execSQL(UtilidadesDB.CREAR_TABLA_LIBRO);
         db.execSQL(UtilidadesDB.CREAR_TABLA_PRESTAMO);
-        db.execSQL("insert into tipo_usuario (descripcion) values('usuario')");
+        db.execSQL("insert into tipo_usuario (descripcion) values('com.example.bibliotecadelibros20.view.fragments.usuario')");
         db.execSQL("insert into autor (nombre) values('Autor 1')");
     }
 
@@ -34,7 +46,7 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(UtilidadesDB.CREAR_TABLA_AUTOR);
         db.execSQL(UtilidadesDB.CREAR_TABLA_LIBRO);
         db.execSQL(UtilidadesDB.CREAR_TABLA_PRESTAMO);
-        db.execSQL("insert into tipo_usuario (descripcion) values('usuario')");
+        db.execSQL("insert into tipo_usuario (descripcion) values('com.example.bibliotecadelibros20.view.fragments.usuario')");
         db.execSQL("insert into autor (nombre) values('Autor 1')");
         onCreate(db);
     }

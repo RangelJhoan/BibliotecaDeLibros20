@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_admin"
+    app:startDestination="@id/adminLibrosDisponiblesFragment">
+
+    <fragment
+        android:id="@+id/adminLibrosDisponiblesFragment"
+        android:name="com.example.bibliotecadelibros20.view.fragments.administrador.AdminLibrosDisponiblesFragment"
+        android:label="fragment_admin_libros_disponibles"
+        tools:layout="@layout/fragment_admin_libros_disponibles" >
+        <action
+            android:id="@+id/action_adminLibrosDisponiblesFragment_to_adminAgregarLibroFragment"
+            app:destination="@id/adminAgregarLibroFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminAgregarLibroFragment"
+        android:name="com.example.bibliotecadelibros20.view.fragments.administrador.AdminAgregarLibroFragment"
+        android:label="fragment_admin_agregar_libro"
+        tools:layout="@layout/fragment_admin_agregar_libro" >
+        <action
+            android:id="@+id/action_adminAgregarLibroFragment_to_adminLibrosDisponiblesFragment"
+            app:destination="@id/adminLibrosDisponiblesFragment" />
+    </fragment>
+</navigation>

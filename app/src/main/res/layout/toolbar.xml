@@ -48,6 +48,7 @@
             android:id="@+id/btnMas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@null"
             android:layout_weight="2"
             android:src="@drawable/mas"
             />

@@ -1,4 +1,4 @@
-package com.example.bibliotecadelibros20.view.fragments;
+package com.example.bibliotecadelibros20.view.fragments.usuario;
 
 import android.os.Bundle;
 
@@ -20,7 +20,6 @@ public class UsuMisLibrosFragment extends Fragment {
     FragmentUsuMisLibrosBinding binding;
 
     public UsuMisLibrosFragment() {
-
     }
 
     public static UsuMisLibrosFragment newInstance() {
