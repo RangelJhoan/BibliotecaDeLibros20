@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/usuMisLibrosFragment">
+
+    <fragment
+        android:id="@+id/usuMisLibrosFragment"
+        android:name="com.example.bibliotecadelibros20.view.fragments.UsuMisLibrosFragment"
+        android:label="fragment_usu_mis_libros"
+        tools:layout="@layout/fragment_usu_mis_libros" >
+        <action
+            android:id="@+id/action_usuMisLibrosFragment_to_usuLibrosDisponiblesFragment"
+            app:destination="@id/usuLibrosDisponiblesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/usuLibrosDisponiblesFragment"
+        android:name="com.example.bibliotecadelibros20.view.fragments.UsuLibrosDisponiblesFragment"
+        android:label="fragment_usu_libros_disponibles"
+        tools:layout="@layout/fragment_usu_libros_disponibles" >
+        <action
+            android:id="@+id/action_usuLibrosDisponiblesFragment_to_usuPrestarLibroFragment"
+            app:destination="@id/usuPrestarLibroFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/usuPrestarLibroFragment"
+        android:name="com.example.bibliotecadelibros20.view.fragments.UsuPrestarLibroFragment"
+        android:label="fragment_usu_prestar_libro"
+        tools:layout="@layout/fragment_usu_prestar_libro" >
+        <action
+            android:id="@+id/action_usuPrestarLibroFragment_to_usuLibrosDisponiblesFragment"
+            app:destination="@id/usuLibrosDisponiblesFragment" />
+    </fragment>
+</navigation>

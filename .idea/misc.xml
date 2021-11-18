@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/PC/AndroidStudioProjects/BibliotecaDeLibros20/app/src/main/res/drawable/design_bordercardview.xml" value="0.3828125" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/BibliotecaDeLibros20/app/src/main/res/drawable/design_orange_button.xml" value="0.3828125" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/BibliotecaDeLibros20/app/src/main/res/layout/activity_login.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/BibliotecaDeLibros20/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/BibliotecaDeLibros20/app/src/main/res/layout/activity_usuario.xml" value="0.2" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/BibliotecaDeLibros20/app/src/main/res/layout/fragment_usu_libros_disponibles.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/BibliotecaDeLibros20/app/src/main/res/layout/fragment_usu_mis_libros.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/BibliotecaDeLibros20/app/src/main/res/layout/fragment_usu_prestar_libro.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/BibliotecaDeLibros20/app/src/main/res/layout/item_list_adminhistoricolibrosprestados.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/BibliotecaDeLibros20/app/src/main/res/layout/item_list_adminlibrosprestados.xml" value="0.36102564102564105" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/BibliotecaDeLibros20/app/src/main/res/layout/item_list_librosdisponibles.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/BibliotecaDeLibros20/app/src/main/res/layout/item_list_librosprestados.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/BibliotecaDeLibros20/app/src/main/res/layout/prestarfooter.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/BibliotecaDeLibros20/app/src/main/res/layout/toolbar.xml" value="0.264" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/BibliotecaDeLibros20/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3828125" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
