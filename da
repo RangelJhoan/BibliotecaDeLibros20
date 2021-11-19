@@ -1,0 +1,25 @@
+[33mcommit 9925ba74e4bafdc971854b2607f0239e9b34a19d[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: RangelJhoan <jhoanrangels2@gmail.com>
+Date:   Thu Nov 18 23:31:28 2021 -0500
+
+    Revert "Commit desde casa 3"
+    
+    This reverts commit e621562af022d0a2a3bfd7e35d964fba8d4d5be1.
+
+[33mcommit e621562af022d0a2a3bfd7e35d964fba8d4d5be1[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/casa[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: RangelJhoan <jhoanrangels2@gmail.com>
+Date:   Thu Nov 18 23:20:50 2021 -0500
+
+    Commit desde casa 3
+
+[33mcommit bc0869e133ecac85b69d758e4873dcd2fba6a4fe[m
+Author: RangelJhoan <jhoanrangels2@gmail.com>
+Date:   Thu Nov 18 17:18:55 2021 -0500
+
+    Se manejaron las interfaces del administrador y del usuario
+
+[33mcommit 5b2fd93e4b160613f99fd9bf767249370ad2e6a0[m
+Author: RangelJhoan <jhoanrangels2@gmail.com>
+Date:   Thu Nov 18 15:35:00 2021 -0500
+
+    first commit
