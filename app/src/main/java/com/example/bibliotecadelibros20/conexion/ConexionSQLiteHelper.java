@@ -12,7 +12,7 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
 
     private static ConexionSQLiteHelper instancia = null;
     private Context mCxt;
-    //PARAMETROS CONEXIÓN
+    //PARAMETROS CONEXIÓN comit 3
     private static final String DATABASE_NAME = "bibliotecadelibros";
     private static final int DATABASE_VERSION = 1;
 
