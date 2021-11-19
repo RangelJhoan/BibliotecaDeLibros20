@@ -13,24 +13,26 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.bibliotecadelibros20.R;
-import com.example.bibliotecadelibros20.databinding.FragmentAdminLibrosDisponiblesBinding;
+import com.example.bibliotecadelibros20.databinding.FragmentAdminLibroHistorialBinding;
 
-public class AdminLibrosDisponiblesFragment extends Fragment {
-    FragmentAdminLibrosDisponiblesBinding binding;
+import javax.security.auth.callback.Callback;
 
-    public AdminLibrosDisponiblesFragment() {
+public class AdminLibroHistorialFragment extends Fragment {
+    FragmentAdminLibroHistorialBinding binding;
+
+    public AdminLibroHistorialFragment() {
 
     }
 
-    public static AdminLibrosDisponiblesFragment newInstance(String param1, String param2) {
-        AdminLibrosDisponiblesFragment fragment = new AdminLibrosDisponiblesFragment();
+    public static AdminLibroHistorialFragment newInstance(String param1, String param2) {
+        AdminLibroHistorialFragment fragment = new AdminLibroHistorialFragment();
         return fragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentAdminLibrosDisponiblesBinding.inflate(inflater,container,false);
+        binding = FragmentAdminLibroHistorialBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -39,17 +41,14 @@ public class AdminLibrosDisponiblesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         NavController navController = Navigation.findNavController(view);
-        binding.btnAgregarLibro.setOnClickListener(v -> {
-            navController.navigate(R.id.adminAgregarLibroFragment);
-        });
-
-        binding.btnEditarLibro.setOnClickListener(v -> {
-            navController.navigate(R.id.adminActualizarLibroFragment);
-        });
-
-        binding.btnPrestados.setOnClickListener(v -> {
+        binding.toolbar.btnMas.setVisibility(View.GONE);
+        binding.toolbar.btnAtras.setVisibility(View.VISIBLE);
+        binding.toolbar.btnAtras.setOnClickListener(v -> {
             navController.navigate(R.id.adminLibrosPrestadosFragment);
         });
 
     }
+
+
+
 }

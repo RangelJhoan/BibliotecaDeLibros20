@@ -13,6 +13,12 @@
         <action
             android:id="@+id/action_adminLibrosDisponiblesFragment_to_adminAgregarLibroFragment"
             app:destination="@id/adminAgregarLibroFragment" />
+        <action
+            android:id="@+id/action_adminLibrosDisponiblesFragment_to_adminActualizarLibroFragment"
+            app:destination="@id/adminActualizarLibroFragment" />
+        <action
+            android:id="@+id/action_adminLibrosDisponiblesFragment_to_adminLibrosPrestadosFragment3"
+            app:destination="@id/adminLibrosPrestadosFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminAgregarLibroFragment"
@@ -21,6 +27,36 @@
         tools:layout="@layout/fragment_admin_agregar_libro" >
         <action
             android:id="@+id/action_adminAgregarLibroFragment_to_adminLibrosDisponiblesFragment"
+            app:destination="@id/adminLibrosDisponiblesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminActualizarLibroFragment"
+        android:name="com.example.bibliotecadelibros20.view.fragments.administrador.AdminActualizarLibroFragment"
+        android:label="fragment_admin_actualizar_libro"
+        tools:layout="@layout/fragment_admin_actualizar_libro" >
+        <action
+            android:id="@+id/action_adminActualizarLibroFragment_to_adminLibrosDisponiblesFragment"
+            app:destination="@id/adminLibrosDisponiblesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminLibroHistorialFragment"
+        android:name="com.example.bibliotecadelibros20.view.fragments.administrador.AdminLibroHistorialFragment"
+        android:label="fragment_admin_libro_historial"
+        tools:layout="@layout/fragment_admin_libro_historial" >
+        <action
+            android:id="@+id/action_adminLibroHistorialFragment_to_adminLibrosPrestadosFragment"
+            app:destination="@id/adminLibrosPrestadosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminLibrosPrestadosFragment"
+        android:name="com.example.bibliotecadelibros20.view.fragments.administrador.AdminLibrosPrestadosFragment"
+        android:label="fragment_admin_libros_prestados"
+        tools:layout="@layout/fragment_admin_libros_prestados" >
+        <action
+            android:id="@+id/action_adminLibrosPrestadosFragment_to_adminLibroHistorialFragment"
+            app:destination="@id/adminLibroHistorialFragment" />
+        <action
+            android:id="@+id/action_adminLibrosPrestadosFragment_to_adminLibrosDisponiblesFragment"
             app:destination="@id/adminLibrosDisponiblesFragment" />
     </fragment>
 </navigation>

@@ -14,19 +14,19 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         binding.btnUsuario.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this,UsuarioActivity.class);
             startActivity(intent);
-            finish();
         });
 
         binding.btnAdmin.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this,UsuarioActivity.class);
+            Intent intent = new Intent(LoginActivity.this,AdministradorActivity.class);
             startActivity(intent);
-            finish();
         });
 
     }
+
 }
