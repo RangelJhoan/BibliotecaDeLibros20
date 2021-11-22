@@ -51,7 +51,7 @@ public class AdminPresenterImpl implements AdminPresenter {
 
     @Override
     public void actualizarLibro(Context context, Libro libro) {
-        
+
     }
 
 
