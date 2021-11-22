@@ -8,7 +8,7 @@ public class UtilidadesDB {
     public static final String CAMPO_DESCRIPCION = "descripcion";
 
     //ATRIBUTOS DEL USUARIO
-    public static final String TABLA_USUARIO = "com/example/bibliotecadelibros20/view/fragments/usuario";
+    public static final String TABLA_USUARIO = "usuario";
     public static final String CAMPO_ID_USUARIO = "id";
     public static final String CAMPO_NOMBRE = "nombre";
     public static final String CAMPO_CORREO_ELECTRONICO = "correo_electronico";
@@ -27,7 +27,7 @@ public class UtilidadesDB {
     public static final String LIBRO_ID = "id";
     public static final String LIBRO_TITULO = "titulo";
     public static final String LIBRO_DESCRIPCION = "descripcion";
-    public static final String LIBRO_CONTENIDO_COMPLETO = "contenido_completo";
+    public static final String LIBRO_URL = "url";
     public static final String LIBRO_CANTIDAD = "cantidad";
     public static final String LIBRO_IMAGEN = "imagen";
     public static final String LIBRO_FORANEA_AUTOR = "id_autor";
@@ -47,7 +47,7 @@ public class UtilidadesDB {
     public static final String CREAR_TABLA_AUTOR = "CREATE TABLE " + AUTOR_TABLA + " (" + AUTOR_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + AUTOR_NOMBRE + " TEXT)";
 
     public static final String CREAR_TABLA_LIBRO = "CREATE TABLE " + LIBRO_TABLA + " (" + LIBRO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " + LIBRO_TITULO + " TEXT, "
-            + LIBRO_DESCRIPCION + " TEXT," + LIBRO_CONTENIDO_COMPLETO + " TEXT, " + LIBRO_CANTIDAD + " INTEGER, " + LIBRO_IMAGEN + " TEXT, " + LIBRO_FORANEA_AUTOR + " INTEGER)";
+            + LIBRO_DESCRIPCION + " TEXT," + LIBRO_URL + " TEXT, " + LIBRO_CANTIDAD + " INTEGER, " + LIBRO_IMAGEN + " TEXT, " + LIBRO_FORANEA_AUTOR + " INTEGER)";
 
     public static final String CREAR_TABLA_PRESTAMO = "CREATE TABLE " + PRESTAMO_TABLA + " (" + PRESTAMO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " + PRESTAMO_ID_USUARIO + " INTEGER, "
             + PRESTAMO_ID_LIBRO + " INTEGER, " + PRESTAMO_FECHA_PRESTAMO + " DEFAULT CURRENT_TIMESTAMP)";

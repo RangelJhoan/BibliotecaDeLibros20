@@ -1,5 +1,7 @@
 package com.example.bibliotecadelibros20.view.fragments.administrador;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -7,16 +9,31 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.bibliotecadelibros20.R;
 import com.example.bibliotecadelibros20.databinding.FragmentAdminLibrosDisponiblesBinding;
+import com.example.bibliotecadelibros20.entidades.Libro;
+import com.example.bibliotecadelibros20.interfaces.AdminPresenter;
+import com.example.bibliotecadelibros20.interfaces.AdminView;
+import com.example.bibliotecadelibros20.interfaces.IComunicaFragments;
+import com.example.bibliotecadelibros20.presenter.AdminPresenterImpl;
+import com.example.bibliotecadelibros20.view.adapters.AdaptadorLibrosDisponibles;
 
-public class AdminLibrosDisponiblesFragment extends Fragment {
+import java.util.ArrayList;
+
+public class AdminLibrosDisponiblesFragment extends Fragment implements AdminView {
+
+    private AdminPresenter presenter;
     FragmentAdminLibrosDisponiblesBinding binding;
+    AdaptadorLibrosDisponibles adaptadorLibrosDisponibles;
+    IComunicaFragments iComunicaFragments;
+    Activity actividad;
 
     public AdminLibrosDisponiblesFragment() {
 
@@ -38,7 +55,12 @@ public class AdminLibrosDisponiblesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        NavController navController = Navigation.findNavController(view);
+        presenter = new AdminPresenterImpl(this);
+        presenter.consultarLibros(getContext());
+        binding.toolbar.ivPerfil.setImageResource(R.drawable.icon_administrador);
+
+        final NavController navController = Navigation.findNavController(view);
+
         binding.btnAgregarLibro.setOnClickListener(v -> {
             navController.navigate(R.id.adminAgregarLibroFragment);
         });
@@ -50,6 +72,33 @@ public class AdminLibrosDisponiblesFragment extends Fragment {
         binding.btnPrestados.setOnClickListener(v -> {
             navController.navigate(R.id.adminLibrosPrestadosFragment);
         });
+        abrirOpciones(view);
+    }
 
+    private void abrirOpciones(View navView){
+        binding.toolbar.btnMas.setOnClickListener(view -> {
+            iComunicaFragments.abrirAdminDialog(navView);
+        });
+    }
+
+    @Override
+    public void mostrarResultado(String resultado) {
+
+    }
+
+    @Override
+    public void mostrarLibros(ArrayList<Libro> libro) {
+        binding.rvLibrosDisponibles.setLayoutManager(new GridLayoutManager(getContext(),2));
+        adaptadorLibrosDisponibles = new AdaptadorLibrosDisponibles(getContext(),libro);
+        binding.rvLibrosDisponibles.setAdapter(adaptadorLibrosDisponibles);
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if(context instanceof Activity){
+            actividad = (Activity) context;
+            iComunicaFragments = (IComunicaFragments) actividad;
+        }
     }
 }

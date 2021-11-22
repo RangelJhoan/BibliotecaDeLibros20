@@ -12,10 +12,12 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
 
     private static ConexionSQLiteHelper instancia = null;
     private Context mCxt;
-    //PARAMETROS CONEXIÓN comit 3
+
+    //PARAMETROS CONEXIÓN
     private static final String DATABASE_NAME = "bibliotecadelibros";
     private static final int DATABASE_VERSION = 1;
 
+    //Crear conexión
     public static ConexionSQLiteHelper getInstance(Context ctx){
         if(instancia == null){
             instancia = new ConexionSQLiteHelper(ctx.getApplicationContext());
@@ -35,7 +37,7 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(UtilidadesDB.CREAR_TABLA_AUTOR);
         db.execSQL(UtilidadesDB.CREAR_TABLA_LIBRO);
         db.execSQL(UtilidadesDB.CREAR_TABLA_PRESTAMO);
-        db.execSQL("insert into tipo_usuario (descripcion) values('com.example.bibliotecadelibros20.view.fragments.usuario')");
+        db.execSQL("insert into tipo_usuario (descripcion) values('usuario')");
         db.execSQL("insert into autor (nombre) values('Autor 1')");
     }
 
@@ -46,7 +48,7 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(UtilidadesDB.CREAR_TABLA_AUTOR);
         db.execSQL(UtilidadesDB.CREAR_TABLA_LIBRO);
         db.execSQL(UtilidadesDB.CREAR_TABLA_PRESTAMO);
-        db.execSQL("insert into tipo_usuario (descripcion) values('com.example.bibliotecadelibros20.view.fragments.usuario')");
+        db.execSQL("insert into tipo_usuario (descripcion) values('usuario')");
         db.execSQL("insert into autor (nombre) values('Autor 1')");
         onCreate(db);
     }

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.bibliotecadelibros20.R;
 import com.example.bibliotecadelibros20.databinding.FragmentUsuPrestarLibroBinding;
 
 public class UsuPrestarLibroFragment extends Fragment {
@@ -35,7 +36,7 @@ public class UsuPrestarLibroFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        binding.toolbar.ivPerfil.setImageResource(R.drawable.icon_lector);
         binding.toolbar.btnAtras.setVisibility(View.VISIBLE);
         binding.toolbar.btnMas.setVisibility(View.GONE);
 

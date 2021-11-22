@@ -1,13 +1,15 @@
 package com.example.bibliotecadelibros20.view.activities;
 
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-
-import com.example.bibliotecadelibros20.R;
 import com.example.bibliotecadelibros20.databinding.ActivityAdministradorBinding;
+import com.example.bibliotecadelibros20.dialogos.DialogoAdminOpcFragment;
+import com.example.bibliotecadelibros20.interfaces.IComunicaFragments;
 
-public class AdministradorActivity extends AppCompatActivity {
+public class AdministradorActivity extends AppCompatActivity implements IComunicaFragments {
 
     ActivityAdministradorBinding binding;
 
@@ -16,6 +18,8 @@ public class AdministradorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAdministradorBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
     }
 
     @Override
@@ -23,4 +27,9 @@ public class AdministradorActivity extends AppCompatActivity {
         //super.onBackPressed();
     }
 
+    @Override
+    public void abrirAdminDialog(View navView) {
+        DialogoAdminOpcFragment dialogoAdminOpcFragment = new DialogoAdminOpcFragment(navView);
+        dialogoAdminOpcFragment.show(getSupportFragmentManager(),"DialogoAdmOpc");
+    }
 }
