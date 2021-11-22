@@ -46,7 +46,7 @@ public class AdminAgregarLibroFragment extends Fragment implements AdminView {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        binding.toolbar.ivPerfil.setImageResource(R.drawable.icon_administrador);
         presenter = new AdminPresenterImpl(this);
         final NavController navController = Navigation.findNavController(view);
 

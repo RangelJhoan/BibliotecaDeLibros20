@@ -21,7 +21,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvAgregarLibro"
+            android:id="@+id/tvActualizarLibro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
@@ -120,7 +120,7 @@
             android:textSize="15sp" />
 
         <Button
-            android:id="@+id/btnAgregarLibro"
+            android:id="@+id/btnActualizarLibro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"

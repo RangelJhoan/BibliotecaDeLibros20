@@ -4,6 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
+
+import androidx.fragment.app.FragmentManager;
 
 import com.example.bibliotecadelibros20.conexion.ConexionSQLiteHelper;
 import com.example.bibliotecadelibros20.entidades.Autor;
@@ -41,6 +44,27 @@ public class AdminInteractorImpl implements AdminInteractor {
             adminPresenter.mostrarResultado("Se agregó correctamente el libro");
         } else {
             adminPresenter.mostrarResultado("No se agregó el libro");
+        }
+        db.close();
+    }
+
+    @Override
+    public void actualizarLibro(Context context, Libro libro) {
+        conn = ConexionSQLiteHelper.getInstance(context);
+        SQLiteDatabase db = conn.getWritableDatabase();
+        String[] where = {String.valueOf(libro.getId())};
+        ContentValues values = new ContentValues();
+        values.put(UtilidadesDB.LIBRO_TITULO, libro.getTitulo());
+        values.put(UtilidadesDB.LIBRO_CANTIDAD, libro.getCantidad());
+        values.put(UtilidadesDB.LIBRO_IMAGEN, libro.getImagen());
+        values.put(UtilidadesDB.LIBRO_DESCRIPCION, libro.getDescripcion());
+        values.put(UtilidadesDB.LIBRO_URL, libro.getUrl());
+
+        long respuesta = db.update(UtilidadesDB.LIBRO_TABLA, values, UtilidadesDB.LIBRO_ID + " = ?", where);
+        if (respuesta > 0) {
+            adminPresenter.mostrarResultado("Se editó el libro correctamente");
+        }else{
+            adminPresenter.mostrarResultado("No se pudo editar el libro");
         }
         db.close();
     }

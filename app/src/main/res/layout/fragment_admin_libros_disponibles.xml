@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".view.fragments.administrador.AdminLibrosDisponiblesFragment">
 
@@ -10,45 +11,22 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         layout="@layout/toolbar"
+        />
+
+    <SearchView
+        android:id="@+id/svBuscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/design_border"
+        android:layout_marginHorizontal="20dp"
         />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvLibrosDisponibles"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="8"
-        />
-
-    <Button
-        android:id="@+id/btnAgregarLibro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="10dp"
-        android:background="@drawable/design_orange_button"
-        android:text="Agregar Libro"
-        />
-
-    <Button
-        android:id="@+id/btnEditarLibro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="10dp"
-        android:background="@drawable/design_orange_button"
-        android:text="Editar Libro"
-        />
-
-    <Button
-        android:id="@+id/btnPrestados"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="10dp"
-        android:background="@drawable/design_orange_button"
-        android:text="Libros prestados"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
         />
 
 </LinearLayout>

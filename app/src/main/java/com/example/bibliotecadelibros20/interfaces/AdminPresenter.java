@@ -14,5 +14,5 @@ public interface AdminPresenter {
     //IInteractor
     void agregarLibro(Context context, Libro libro);
     void consultarLibros(Context context);
-    //void actualizarLibro(Context context, Libro libro);
+    void actualizarLibro(Context context, Libro libro);
 }

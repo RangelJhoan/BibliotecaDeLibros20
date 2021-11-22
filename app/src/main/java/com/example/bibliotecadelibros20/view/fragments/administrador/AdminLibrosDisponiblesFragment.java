@@ -34,6 +34,7 @@ public class AdminLibrosDisponiblesFragment extends Fragment implements AdminVie
     AdaptadorLibrosDisponibles adaptadorLibrosDisponibles;
     IComunicaFragments iComunicaFragments;
     Activity actividad;
+    View vista;
 
     public AdminLibrosDisponiblesFragment() {
 
@@ -57,21 +58,8 @@ public class AdminLibrosDisponiblesFragment extends Fragment implements AdminVie
 
         presenter = new AdminPresenterImpl(this);
         presenter.consultarLibros(getContext());
-        binding.toolbar.ivPerfil.setImageResource(R.drawable.icon_administrador);
+        vista = view;
 
-        final NavController navController = Navigation.findNavController(view);
-
-        binding.btnAgregarLibro.setOnClickListener(v -> {
-            navController.navigate(R.id.adminAgregarLibroFragment);
-        });
-
-        binding.btnEditarLibro.setOnClickListener(v -> {
-            navController.navigate(R.id.adminActualizarLibroFragment);
-        });
-
-        binding.btnPrestados.setOnClickListener(v -> {
-            navController.navigate(R.id.adminLibrosPrestadosFragment);
-        });
         abrirOpciones(view);
     }
 
@@ -90,6 +78,16 @@ public class AdminLibrosDisponiblesFragment extends Fragment implements AdminVie
     public void mostrarLibros(ArrayList<Libro> libro) {
         binding.rvLibrosDisponibles.setLayoutManager(new GridLayoutManager(getContext(),2));
         adaptadorLibrosDisponibles = new AdaptadorLibrosDisponibles(getContext(),libro);
+        adaptadorLibrosDisponibles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavController navController = Navigation.findNavController(vista);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("libro",libro.get(binding.rvLibrosDisponibles.getChildAdapterPosition(v)));
+                navController.navigate(R.id.adminActualizarLibroFragment,bundle);
+            }
+        });
+
         binding.rvLibrosDisponibles.setAdapter(adaptadorLibrosDisponibles);
     }
 

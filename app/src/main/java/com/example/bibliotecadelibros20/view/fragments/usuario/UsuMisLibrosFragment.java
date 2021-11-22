@@ -37,7 +37,7 @@ public class UsuMisLibrosFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.toolbar.ivPerfil.setImageResource(R.drawable.icon_lector);
+
         final NavController navController = Navigation.findNavController(view);
         binding.prestarfooter.btnPrestar.setOnClickListener(v -> {
             navController.navigate(R.id.usuLibrosDisponiblesFragment);
