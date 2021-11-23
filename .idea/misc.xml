@@ -8,13 +8,15 @@
         <entry key="..\:/Android/git/BibliotecaDeLibros20/app/src/main/res/layout/activity_administrador.xml" value="0.21965579710144928" />
         <entry key="..\:/Android/git/BibliotecaDeLibros20/app/src/main/res/layout/activity_login.xml" value="0.3641304347826087" />
         <entry key="..\:/Android/git/BibliotecaDeLibros20/app/src/main/res/layout/activity_usuario.xml" value="0.21965579710144928" />
-        <entry key="..\:/Android/git/BibliotecaDeLibros20/app/src/main/res/layout/fragment_admin_actualizar_libro.xml" value="0.20520833333333333" />
+        <entry key="..\:/Android/git/BibliotecaDeLibros20/app/src/main/res/layout/fragment_admin_actualizar_libro.xml" value="0.22" />
         <entry key="..\:/Android/git/BibliotecaDeLibros20/app/src/main/res/layout/fragment_admin_agregar_libro.xml" value="0.20520833333333333" />
         <entry key="..\:/Android/git/BibliotecaDeLibros20/app/src/main/res/layout/fragment_admin_libros_disponibles.xml" value="0.3546195652173913" />
         <entry key="..\:/Android/git/BibliotecaDeLibros20/app/src/main/res/layout/fragment_dialogo_admin_opc.xml" value="0.3496376811594203" />
         <entry key="..\:/Android/git/BibliotecaDeLibros20/app/src/main/res/layout/fragment_usu_mis_libros.xml" value="0.3496376811594203" />
         <entry key="..\:/Android/git/BibliotecaDeLibros20/app/src/main/res/layout/item_list_librosdisponibles.xml" value="0.20520833333333333" />
         <entry key="..\:/Android/git/BibliotecaDeLibros20/app/src/main/res/layout/toolbar.xml" value="0.3496376811594203" />
+        <entry key="..\:/Android/git/BibliotecaDeLibros20/app/src/main/res/mipmap-anydpi-v26/ic_administrador.xml" value="0.221875" />
+        <entry key="..\:/Android/git/BibliotecaDeLibros20/app/src/main/res/mipmap-anydpi-v26/ic_administrador_round.xml" value="0.221875" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/BibliotecaDeLibros20/app/src/main/res/drawable/design_background_gray.xml" value="0.3828125" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/BibliotecaDeLibros20/app/src/main/res/drawable/design_border.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/BibliotecaDeLibros20/app/src/main/res/drawable/design_bordercardview.xml" value="0.3828125" />

@@ -18,8 +18,8 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     //Crear conexión
-    public static ConexionSQLiteHelper getInstance(Context ctx){
-        if(instancia == null){
+    public static ConexionSQLiteHelper getInstance(Context ctx) {
+        if (instancia == null) {
             instancia = new ConexionSQLiteHelper(ctx.getApplicationContext());
         }
         return instancia;
@@ -38,7 +38,6 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(UtilidadesDB.CREAR_TABLA_LIBRO);
         db.execSQL(UtilidadesDB.CREAR_TABLA_PRESTAMO);
         db.execSQL("insert into tipo_usuario (descripcion) values('usuario')");
-        db.execSQL("insert into autor (nombre) values('Autor 1')");
     }
 
     @Override
@@ -49,7 +48,6 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(UtilidadesDB.CREAR_TABLA_LIBRO);
         db.execSQL(UtilidadesDB.CREAR_TABLA_PRESTAMO);
         db.execSQL("insert into tipo_usuario (descripcion) values('usuario')");
-        db.execSQL("insert into autor (nombre) values('Autor 1')");
         onCreate(db);
     }
 }

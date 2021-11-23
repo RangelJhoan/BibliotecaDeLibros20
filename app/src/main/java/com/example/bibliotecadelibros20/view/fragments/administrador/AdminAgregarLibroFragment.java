@@ -1,4 +1,5 @@
 package com.example.bibliotecadelibros20.view.fragments.administrador;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,21 +58,22 @@ public class AdminAgregarLibroFragment extends Fragment implements AdminView {
         });
 
         binding.btnAgregarLibro.setOnClickListener(view1 -> {
-            EditText[] editTexts = {binding.etNombre,binding.etDescripcion,binding.etUrlLibro,binding.etCantidadLibros,binding.etImagen};
-            if(Validaciones.validarCampos(editTexts)){
+            EditText[] editTexts = {binding.etNombre, binding.etDescripcion, binding.etUrlLibro, binding.etCantidadLibros, binding.etImagen, binding.etAutor};
+            if (Validaciones.validarCampos(editTexts)) {
                 agregarLibro();
-            }else{
+                navController.navigate(R.id.adminLibrosDisponiblesFragment);
+            } else {
                 Toast.makeText(getContext(), "Por favor llene todos los datos", Toast.LENGTH_SHORT).show();
             }
         });
-        
+
     }
 
     public void agregarLibro() {
         Libro libro = new Libro();
         Autor autor = new Autor();
 
-        autor.setId(1);
+        autor.setNombre(binding.etAutor.getText().toString());
         libro.setTitulo(binding.etNombre.getText().toString());
         libro.setDescripcion(binding.etDescripcion.getText().toString());
         libro.setUrl(binding.etUrlLibro.getText().toString());
