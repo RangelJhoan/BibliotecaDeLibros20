@@ -5,17 +5,18 @@
     android:orientation="vertical">
 
     <View
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
+        android:id="@+id/view1"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
         android:layout_margin="10dp"
-        android:background="#E91313"
-        />
+        android:background="#9A5C02" />
 
     <Button
         android:id="@+id/btnPrestar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="100dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/design_orange_button"
         android:text="Prestar"
         />

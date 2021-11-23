@@ -7,56 +7,45 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+
 import com.example.bibliotecadelibros20.R;
-import com.example.bibliotecadelibros20.databinding.FragmentDialogoAdminOpcBinding;
+import com.example.bibliotecadelibros20.databinding.FragmentDialogoUsuOpcBinding;
 
-public class DialogoAdminOpcFragment extends DialogFragment {
+public class DialogoUsuOpcFragment extends DialogFragment {
 
+    FragmentDialogoUsuOpcBinding binding;
     Activity actividad;
-    FragmentDialogoAdminOpcBinding binding;
-    NavController navController;
 
-    public DialogoAdminOpcFragment(View navView) {
-        navController = Navigation.findNavController(navView);
+    public DialogoUsuOpcFragment() {
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        return crearAdminDialogOpc();
+        return crearUsuDialogOpc();
     }
 
-    private AlertDialog crearAdminDialogOpc() {
+    private AlertDialog crearUsuDialogOpc() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        binding = FragmentDialogoAdminOpcBinding.inflate(getActivity().getLayoutInflater());
+        binding = FragmentDialogoUsuOpcBinding.inflate(getActivity().getLayoutInflater());
         builder.setView(binding.getRoot());
-
         eventoBotones();
-
         return builder.create();
     }
 
     private void eventoBotones() {
-        binding.btnAgregar.setOnClickListener(v -> {
-            navController.navigate(R.id.adminAgregarLibroFragment);
-            dismiss();
-        });
-
-        binding.btnPrestados.setOnClickListener(v -> {
-            navController.navigate(R.id.adminLibrosPrestadosFragment);
-            dismiss();
-        });
-
         binding.btnSalir.setOnClickListener(v -> {
             getActivity().finish();
             dismiss();
@@ -79,7 +68,7 @@ public class DialogoAdminOpcFragment extends DialogFragment {
         if(context instanceof Activity){
             this.actividad = (Activity) context;
         }else{
-            throw new RuntimeException(context.toString()+ " must implement OnFragmentListener");
+            throw new RuntimeException(context.toString()+" must implement OnFragmentListener");
         }
     }
 }

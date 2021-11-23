@@ -69,6 +69,7 @@ public class AdaptadorLibrosDisponibles extends RecyclerView.Adapter<AdaptadorLi
         holder.titulo.setText(listaLibros.get(position).getTitulo());
         Glide.with(context)
                 .load(listaLibros.get(position).getImagen())
+                .error(R.drawable.ic_error_imagen_24dp)
                 .into(holder.ivPortada);
         holder.autor.setText(listaLibros.get(position).getAutor().getNombre());
     }

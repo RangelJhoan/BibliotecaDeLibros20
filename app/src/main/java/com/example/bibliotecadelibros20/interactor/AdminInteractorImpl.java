@@ -153,5 +153,4 @@ public class AdminInteractorImpl implements AdminInteractor {
         cursor.close();
         db.close();
     }
-
 }

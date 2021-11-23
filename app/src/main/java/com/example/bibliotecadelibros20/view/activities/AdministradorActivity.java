@@ -28,7 +28,7 @@ public class AdministradorActivity extends AppCompatActivity implements IComunic
     }
 
     @Override
-    public void abrirAdminDialog(View navView) {
+    public void abrirDialog(View navView) {
         DialogoAdminOpcFragment dialogoAdminOpcFragment = new DialogoAdminOpcFragment(navView);
         dialogoAdminOpcFragment.show(getSupportFragmentManager(),"DialogoAdmOpc");
     }

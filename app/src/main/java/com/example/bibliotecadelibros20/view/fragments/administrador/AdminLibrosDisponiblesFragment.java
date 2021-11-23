@@ -65,7 +65,7 @@ public class AdminLibrosDisponiblesFragment extends Fragment implements AdminVie
 
     private void abrirOpciones(View navView){
         binding.toolbar.btnMas.setOnClickListener(view -> {
-            iComunicaFragments.abrirAdminDialog(navView);
+            iComunicaFragments.abrirDialog(navView);
         });
     }
 

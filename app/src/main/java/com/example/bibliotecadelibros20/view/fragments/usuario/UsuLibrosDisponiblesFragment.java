@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +15,20 @@ import android.view.ViewGroup;
 
 import com.example.bibliotecadelibros20.R;
 import com.example.bibliotecadelibros20.databinding.FragmentUsuLibrosDisponiblesBinding;
+import com.example.bibliotecadelibros20.entidades.Libro;
+import com.example.bibliotecadelibros20.interfaces.AdminPresenter;
+import com.example.bibliotecadelibros20.interfaces.AdminView;
+import com.example.bibliotecadelibros20.presenter.AdminPresenterImpl;
+import com.example.bibliotecadelibros20.view.adapters.AdaptadorLibrosDisponibles;
 
-public class UsuLibrosDisponiblesFragment extends Fragment {
+import java.util.ArrayList;
+
+public class UsuLibrosDisponiblesFragment extends Fragment implements AdminView {
 
     FragmentUsuLibrosDisponiblesBinding binding;
+    AdaptadorLibrosDisponibles adaptadorLibrosDisponibles;
+    View vista;
+    AdminPresenter presenter;
 
     public UsuLibrosDisponiblesFragment() {
     }
@@ -43,12 +54,39 @@ public class UsuLibrosDisponiblesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        final NavController navController = Navigation.findNavController(view);
+        vista = view;
+        presenter = new AdminPresenterImpl(this);
+        presenter.consultarLibros(getContext());
 
+        final NavController navController = Navigation.findNavController(view);
+        binding.toolbar.ivPerfil.setImageResource(R.drawable.icon_lector);
         binding.toolbar.btnMas.setVisibility(View.GONE);
         binding.toolbar.btnAtras.setVisibility(View.VISIBLE);
         binding.toolbar.btnAtras.setOnClickListener(v -> {
             navController.navigate(R.id.usuMisLibrosFragment);
         });
+
+    }
+
+    @Override
+    public void mostrarResultado(String resultado) {
+
+    }
+
+    @Override
+    public void mostrarLibros(ArrayList<Libro> listaLibros) {
+        binding.rvLibrosDisponibles.setLayoutManager(new GridLayoutManager(getContext(),2));
+        adaptadorLibrosDisponibles = new AdaptadorLibrosDisponibles(getContext(),listaLibros);
+        adaptadorLibrosDisponibles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavController navController = Navigation.findNavController(vista);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("libro",listaLibros.get(binding.rvLibrosDisponibles.getChildAdapterPosition(v)));
+                navController.navigate(R.id.usuPrestarLibroFragment,bundle);
+            }
+        });
+
+        binding.rvLibrosDisponibles.setAdapter(adaptadorLibrosDisponibles);
     }
 }
