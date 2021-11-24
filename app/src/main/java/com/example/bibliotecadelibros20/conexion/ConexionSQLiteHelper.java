@@ -37,6 +37,7 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(UtilidadesDB.CREAR_TABLA_AUTOR);
         db.execSQL(UtilidadesDB.CREAR_TABLA_LIBRO);
         db.execSQL(UtilidadesDB.CREAR_TABLA_PRESTAMO);
+        db.execSQL("insert into usuario (nombre) values('Jhoan')");
         db.execSQL("insert into tipo_usuario (descripcion) values('usuario')");
     }
 
@@ -47,6 +48,7 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(UtilidadesDB.CREAR_TABLA_AUTOR);
         db.execSQL(UtilidadesDB.CREAR_TABLA_LIBRO);
         db.execSQL(UtilidadesDB.CREAR_TABLA_PRESTAMO);
+        db.execSQL("insert into usuario (nombre) values('Jhoan')");
         db.execSQL("insert into tipo_usuario (descripcion) values('usuario')");
         onCreate(db);
     }

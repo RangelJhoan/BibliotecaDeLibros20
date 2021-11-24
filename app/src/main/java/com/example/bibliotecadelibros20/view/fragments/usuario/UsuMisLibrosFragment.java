@@ -9,20 +9,33 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.example.bibliotecadelibros20.R;
 import com.example.bibliotecadelibros20.databinding.FragmentUsuMisLibrosBinding;
+import com.example.bibliotecadelibros20.entidades.Libro;
+import com.example.bibliotecadelibros20.entidades.Prestamo;
+import com.example.bibliotecadelibros20.interfaces.AdminPresenter;
+import com.example.bibliotecadelibros20.interfaces.AdminView;
 import com.example.bibliotecadelibros20.interfaces.IComunicaFragments;
+import com.example.bibliotecadelibros20.presenter.AdminPresenterImpl;
+import com.example.bibliotecadelibros20.utilidades.Sesion;
+import com.example.bibliotecadelibros20.view.adapters.AdaptadorPrestamosLL;
 
-public class UsuMisLibrosFragment extends Fragment {
+import java.util.ArrayList;
+
+public class UsuMisLibrosFragment extends Fragment implements AdminView {
 
     FragmentUsuMisLibrosBinding binding;
     IComunicaFragments iComunicaFragments;
     Activity actividad;
+    AdaptadorPrestamosLL adaptadorPrestamosLL;
+    AdminPresenter presenter;
 
     public UsuMisLibrosFragment() {
     }
@@ -42,7 +55,8 @@ public class UsuMisLibrosFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        presenter = new AdminPresenterImpl(this);
+        presenter.consultarLibrosPrestadosUsu(getContext(), Sesion.usuario.getId());
         binding.toolbar.ivPerfil.setImageResource(R.drawable.icon_lector);
         final NavController navController = Navigation.findNavController(view);
         binding.toolbar.btnMas.setOnClickListener(v -> {
@@ -60,5 +74,22 @@ public class UsuMisLibrosFragment extends Fragment {
             this.actividad = (Activity) context;
             iComunicaFragments = (IComunicaFragments) actividad;
         }
+    }
+
+    @Override
+    public void mostrarResultado(String resultado) {
+
+    }
+
+    @Override
+    public void mostrarLibros(ArrayList<Libro> listaLibros) {
+
+    }
+
+    @Override
+    public void mostrarLibrosPrestados(ArrayList<Prestamo> listaPrestamo) {
+        binding.rvLibrosPrestados.setLayoutManager(new LinearLayoutManager(getContext()));
+        adaptadorPrestamosLL = new AdaptadorPrestamosLL(getContext(), listaPrestamo);
+        binding.rvLibrosPrestados.setAdapter(adaptadorPrestamosLL);
     }
 }

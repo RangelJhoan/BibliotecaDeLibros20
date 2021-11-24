@@ -3,6 +3,7 @@ package com.example.bibliotecadelibros20.presenter;
 import android.content.Context;
 
 import com.example.bibliotecadelibros20.entidades.Libro;
+import com.example.bibliotecadelibros20.entidades.Prestamo;
 import com.example.bibliotecadelibros20.interactor.AdminInteractorImpl;
 import com.example.bibliotecadelibros20.interfaces.AdminInteractor;
 import com.example.bibliotecadelibros20.interfaces.AdminPresenter;
@@ -52,6 +53,27 @@ public class AdminPresenterImpl implements AdminPresenter {
     public void actualizarLibro(Context context, Libro libro) {
         if (interactor != null) {
             interactor.actualizarLibro(context, libro);
+        }
+    }
+
+    @Override
+    public void prestarLibro(Context context, Libro libro, int id_usuario) {
+        if(interactor != null){
+            interactor.prestarLibro(context, libro, id_usuario);
+        }
+    }
+
+    @Override
+    public void mostrarLibrosPrestados(ArrayList<Prestamo> listaPrestamo) {
+        if(view != null){
+            view.mostrarLibrosPrestados(listaPrestamo);
+        }
+    }
+
+    @Override
+    public void consultarLibrosPrestadosUsu(Context context, int id_usuario) {
+        if(interactor != null){
+            interactor.consultarLibrosPrestadosUsu(context,id_usuario);
         }
     }
 

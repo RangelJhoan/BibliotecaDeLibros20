@@ -17,10 +17,18 @@ import com.bumptech.glide.Glide;
 import com.example.bibliotecadelibros20.R;
 import com.example.bibliotecadelibros20.databinding.FragmentUsuPrestarLibroBinding;
 import com.example.bibliotecadelibros20.entidades.Libro;
+import com.example.bibliotecadelibros20.entidades.Prestamo;
+import com.example.bibliotecadelibros20.interfaces.AdminPresenter;
+import com.example.bibliotecadelibros20.interfaces.AdminView;
+import com.example.bibliotecadelibros20.presenter.AdminPresenterImpl;
+import com.example.bibliotecadelibros20.utilidades.Sesion;
 
-public class UsuPrestarLibroFragment extends Fragment {
+import java.util.ArrayList;
+
+public class UsuPrestarLibroFragment extends Fragment implements AdminView {
 
     FragmentUsuPrestarLibroBinding binding;
+    AdminPresenter presenter;
 
     public UsuPrestarLibroFragment() {
 
@@ -41,6 +49,7 @@ public class UsuPrestarLibroFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        presenter = new AdminPresenterImpl(this);
 
         binding.toolbar.ivPerfil.setImageResource(R.drawable.icon_lector);
         binding.toolbar.btnMas.setVisibility(View.GONE);
@@ -51,8 +60,9 @@ public class UsuPrestarLibroFragment extends Fragment {
         });
 
         Bundle bundle = getArguments();
-        if(bundle != null){
-            Libro libro = (Libro) bundle.getSerializable("libro");
+        Libro libro = new Libro();
+        if (bundle != null) {
+            libro = (Libro) bundle.getSerializable("libro");
             Glide.with(getContext())
                     .load(libro.getImagen())
                     .error(R.drawable.ic_error_imagen_24dp)
@@ -61,6 +71,27 @@ public class UsuPrestarLibroFragment extends Fragment {
             binding.tvAutorLibro.setText(libro.getAutor().getNombre());
             binding.tvDescripcion.setText(libro.getDescripcion());
         }
+
+        Libro finalLibro = libro;
+
+        binding.footer.btnPrestar.setOnClickListener(v -> {
+            presenter.prestarLibro(getContext(), finalLibro, Sesion.usuario.getId());
+        });
+
+    }
+
+    @Override
+    public void mostrarResultado(String resultado) {
+        Toast.makeText(getContext(), resultado, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void mostrarLibros(ArrayList<Libro> listaLibros) {
+
+    }
+
+    @Override
+    public void mostrarLibrosPrestados(ArrayList<Prestamo> listaPrestamo) {
 
     }
     //Atribución error: <a href="https://es.vecteezy.com/vectores-gratis/dise%C3%B1o">Diseño Vectores por Vecteezy</a>

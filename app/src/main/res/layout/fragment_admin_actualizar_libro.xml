@@ -10,36 +10,45 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="9"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvActualizarLibro"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:text="Actualizar Libro"
-            android:textColor="@color/white"
-            android:textSize="28sp" />
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight="1">
 
-        <View
-            android:id="@+id/view1"
-            android:layout_width="wrap_content"
-            android:layout_height="2dp"
-            android:layout_marginHorizontal="20dp"
-            android:background="#9A5C02" />
+            <TextView
+                android:id="@+id/tvActualizarLibro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:text="Actualizar Libro"
+                android:textColor="@color/white"
+                android:textSize="28sp" />
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_marginHorizontal="20dp"
+                android:background="#9A5C02" />
+
+        </LinearLayout>
 
         <EditText
             android:id="@+id/etNombre"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/design_background_gray"
@@ -52,7 +61,8 @@
         <EditText
             android:id="@+id/etAutor"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/design_background_gray"
@@ -66,7 +76,8 @@
         <EditText
             android:id="@+id/etCantidadLibros"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/design_background_gray"
@@ -80,7 +91,8 @@
         <EditText
             android:id="@+id/etUrlLibro"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/design_background_gray"
@@ -94,7 +106,8 @@
         <EditText
             android:id="@+id/etImagen"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/design_background_gray"
@@ -108,7 +121,8 @@
         <EditText
             android:id="@+id/etDescripcion"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="0dp"
+            android:layout_weight="2"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/design_background_gray"
@@ -122,7 +136,8 @@
         <Button
             android:id="@+id/btnActualizarLibro"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"

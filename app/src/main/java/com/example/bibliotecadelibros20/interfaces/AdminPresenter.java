@@ -3,6 +3,7 @@ package com.example.bibliotecadelibros20.interfaces;
 import android.content.Context;
 
 import com.example.bibliotecadelibros20.entidades.Libro;
+import com.example.bibliotecadelibros20.entidades.Prestamo;
 
 import java.util.ArrayList;
 
@@ -15,4 +16,10 @@ public interface AdminPresenter {
     void agregarLibro(Context context, Libro libro);
     void consultarLibros(Context context);
     void actualizarLibro(Context context, Libro libro);
+
+    void mostrarLibrosPrestados(ArrayList<Prestamo> listaPrestamo);
+
+    //Usuario
+    void prestarLibro(Context context, Libro libro, int id_usuario);
+    void consultarLibrosPrestadosUsu(Context context, int id_usuario);
 }

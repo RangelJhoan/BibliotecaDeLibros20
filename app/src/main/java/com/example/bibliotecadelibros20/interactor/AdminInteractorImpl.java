@@ -4,13 +4,16 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 import com.example.bibliotecadelibros20.conexion.ConexionSQLiteHelper;
 import com.example.bibliotecadelibros20.entidades.Autor;
 import com.example.bibliotecadelibros20.entidades.Libro;
+import com.example.bibliotecadelibros20.entidades.Prestamo;
 import com.example.bibliotecadelibros20.interfaces.AdminInteractor;
 import com.example.bibliotecadelibros20.interfaces.AdminPresenter;
 import com.example.bibliotecadelibros20.utilidades.UtilidadesDB;
+import com.example.bibliotecadelibros20.utilidades.Validaciones;
 
 import java.util.ArrayList;
 
@@ -153,4 +156,76 @@ public class AdminInteractorImpl implements AdminInteractor {
         cursor.close();
         db.close();
     }
+
+    @Override
+    public void consultarLibrosPrestados(Context context) {
+
+    }
+
+    @Override
+    public void consultarLibrosPrestadosUsu(Context context, int id_usuario) {
+        conn = ConexionSQLiteHelper.getInstance(context);
+        SQLiteDatabase db = conn.getReadableDatabase();
+        Libro libro = null;
+        Prestamo prestamo = null;
+        Autor autor = null;
+        ArrayList<Prestamo> listaPrestamo = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery("SELECT l.titulo, l.imagen, a.nombre, p.fecha_prestamo, l.descripcion, l.url, p.id, l.cantidad, l.id " +
+                "FROM usuario u " +
+                "JOIN prestamo p ON p.id_usuario = u.id " +
+                "JOIN libro l ON l.id = p.id_libro " +
+                "JOIN autor a ON a.id = l.id_autor " +
+                "WHERE u.id = " + id_usuario, null);
+
+        while (cursor.moveToNext()) {
+            libro = new Libro();
+            prestamo = new Prestamo();
+            autor = new Autor();
+
+            autor.setNombre(cursor.getString(2));
+            prestamo.setFecha_prestamo(cursor.getString(3));
+            prestamo.setId(cursor.getInt(6));
+            libro.setTitulo(cursor.getString(0));
+            libro.setImagen(cursor.getString(1));
+            libro.setDescripcion(cursor.getString(4));
+            libro.setUrl(cursor.getString(5));
+            libro.setCantidad(cursor.getInt(7));
+            libro.setId(cursor.getInt(8));
+            libro.setAutor(autor);
+
+            prestamo.setLibro(libro);
+            listaPrestamo.add(prestamo);
+            adminPresenter.mostrarLibrosPrestados(listaPrestamo);
+
+        }
+        cursor.close();
+        db.close();
+    }
+
+    @Override
+    public void prestarLibro(Context context, Libro libro, int id_usuario) {
+        conn = ConexionSQLiteHelper.getInstance(context);
+        if(Validaciones.validarPrestamo(context,libro)){
+            if(Validaciones.verificarPrestamo(context,id_usuario,libro)){
+                SQLiteDatabase db = conn.getReadableDatabase();
+                ContentValues values = new ContentValues();
+                values.put(UtilidadesDB.PRESTAMO_ID_LIBRO, libro.getId());
+                values.put(UtilidadesDB.PRESTAMO_ID_USUARIO, id_usuario);
+
+                long res = db.insert(UtilidadesDB.PRESTAMO_TABLA, UtilidadesDB.PRESTAMO_ID, values);
+
+                if (res > 0) {
+                    adminPresenter.mostrarResultado("Se prestó correctamente el libro");
+                } else {
+                    adminPresenter.mostrarResultado("No se prestó el libro");
+                }
+            }else{
+                adminPresenter.mostrarResultado("Ya haz registrado este libro previamente");
+            }
+        }else{
+            adminPresenter.mostrarResultado("Cantidad de libros no disponible para prestar");
+        }
+    }
+
 }

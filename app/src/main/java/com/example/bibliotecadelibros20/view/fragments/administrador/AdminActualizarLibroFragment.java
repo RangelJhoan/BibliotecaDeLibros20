@@ -18,6 +18,7 @@ import com.example.bibliotecadelibros20.R;
 import com.example.bibliotecadelibros20.databinding.FragmentAdminActualizarLibroBinding;
 import com.example.bibliotecadelibros20.entidades.Autor;
 import com.example.bibliotecadelibros20.entidades.Libro;
+import com.example.bibliotecadelibros20.entidades.Prestamo;
 import com.example.bibliotecadelibros20.interfaces.AdminPresenter;
 import com.example.bibliotecadelibros20.interfaces.AdminView;
 import com.example.bibliotecadelibros20.presenter.AdminPresenterImpl;
@@ -103,6 +104,11 @@ public class AdminActualizarLibroFragment extends Fragment implements AdminView 
 
     @Override
     public void mostrarLibros(ArrayList<Libro> listaLibros) {
+
+    }
+
+    @Override
+    public void mostrarLibrosPrestados(ArrayList<Prestamo> listaPrestamo) {
 
     }
 }

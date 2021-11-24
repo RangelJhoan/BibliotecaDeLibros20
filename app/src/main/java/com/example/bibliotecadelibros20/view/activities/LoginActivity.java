@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.example.bibliotecadelibros20.R;
 import com.example.bibliotecadelibros20.databinding.ActivityLoginBinding;
+import com.example.bibliotecadelibros20.utilidades.Sesion;
 
 public class LoginActivity extends AppCompatActivity {
     ActivityLoginBinding binding;
@@ -19,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
 
         binding.btnUsuario.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this,UsuarioActivity.class);
+            Sesion.usuario.setId(1);
             startActivity(intent);
         });
 
