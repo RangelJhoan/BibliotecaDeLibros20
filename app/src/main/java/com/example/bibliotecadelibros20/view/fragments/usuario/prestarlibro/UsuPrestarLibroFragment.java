@@ -1,4 +1,4 @@
-package com.example.bibliotecadelibros20.view.fragments.usuario;
+package com.example.bibliotecadelibros20.view.fragments.usuario.prestarlibro;
 
 import android.os.Bundle;
 
@@ -17,18 +17,12 @@ import com.bumptech.glide.Glide;
 import com.example.bibliotecadelibros20.R;
 import com.example.bibliotecadelibros20.databinding.FragmentUsuPrestarLibroBinding;
 import com.example.bibliotecadelibros20.entidades.Libro;
-import com.example.bibliotecadelibros20.entidades.Prestamo;
-import com.example.bibliotecadelibros20.interfaces.AdminPresenter;
-import com.example.bibliotecadelibros20.interfaces.AdminView;
-import com.example.bibliotecadelibros20.presenter.AdminPresenterImpl;
 import com.example.bibliotecadelibros20.utilidades.Sesion;
 
-import java.util.ArrayList;
-
-public class UsuPrestarLibroFragment extends Fragment implements AdminView {
+public class UsuPrestarLibroFragment extends Fragment implements PrestarLibroMVP.View {
 
     FragmentUsuPrestarLibroBinding binding;
-    AdminPresenter presenter;
+    PrestarLibroMVP.Presenter presenter;
 
     public UsuPrestarLibroFragment() {
 
@@ -49,7 +43,7 @@ public class UsuPrestarLibroFragment extends Fragment implements AdminView {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        presenter = new AdminPresenterImpl(this);
+        presenter = new PrestarLibroPresenterImpl(this);
 
         binding.toolbar.ivPerfil.setImageResource(R.drawable.icon_lector);
         binding.toolbar.btnMas.setVisibility(View.GONE);
@@ -83,16 +77,6 @@ public class UsuPrestarLibroFragment extends Fragment implements AdminView {
     @Override
     public void mostrarResultado(String resultado) {
         Toast.makeText(getContext(), resultado, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void mostrarLibros(ArrayList<Libro> listaLibros) {
-
-    }
-
-    @Override
-    public void mostrarLibrosPrestados(ArrayList<Prestamo> listaPrestamo) {
-
     }
     //Atribución error: <a href="https://es.vecteezy.com/vectores-gratis/dise%C3%B1o">Diseño Vectores por Vecteezy</a>
 }

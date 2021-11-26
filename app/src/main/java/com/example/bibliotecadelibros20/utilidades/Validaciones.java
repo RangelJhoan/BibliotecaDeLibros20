@@ -52,6 +52,7 @@ public class Validaciones {
                         "JOIN libro l ON l.id = p.id_libro " +
                         "WHERE u.id = ? and l.id = ?",
                 new String[]{String.valueOf(id_usuario), String.valueOf(libro.getId())});
+        //String retrun = cursor.getString(0);
         if (cursor.moveToFirst()) {
             cursor.close();
             db.close();
