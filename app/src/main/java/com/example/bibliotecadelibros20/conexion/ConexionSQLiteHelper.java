@@ -1,11 +1,13 @@
 package com.example.bibliotecadelibros20.conexion;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.bibliotecadelibros20.entidades.Usuario;
 import com.example.bibliotecadelibros20.utilidades.UtilidadesDB;
 
 public class ConexionSQLiteHelper extends SQLiteOpenHelper {
@@ -52,4 +54,21 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("insert into tipo_usuario (descripcion) values('usuario')");
         onCreate(db);
     }
+
+    public long insertarUsuario(Usuario usuario){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(UtilidadesDB.CAMPO_NOMBRE, usuario.getNombre());
+        values.put(UtilidadesDB.CAMPO_CORREO_ELECTRONICO, usuario.getCorreo_electronico());
+        values.put(UtilidadesDB.CAMPO_TELEFONO, usuario.getTelefono());
+        values.put(UtilidadesDB.CAMPO_DIRECCION, usuario.getDireccion());
+        values.put(UtilidadesDB.CAMPO_CLAVE, usuario.getClave());
+        values.put(UtilidadesDB.FORANEA_ID_TIPO_USUARIO, 1);
+
+        long resultado = db.insert(UtilidadesDB.TABLA_USUARIO, UtilidadesDB.CAMPO_ID_USUARIO, values);
+
+        db.close();
+        return resultado;
+    }
+
 }
