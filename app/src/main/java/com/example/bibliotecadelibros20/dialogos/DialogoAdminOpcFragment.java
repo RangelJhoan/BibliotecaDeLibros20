@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import androidx.navigation.Navigation;
 
 import com.example.bibliotecadelibros20.R;
 import com.example.bibliotecadelibros20.databinding.FragmentDialogoAdminOpcBinding;
+import com.example.bibliotecadelibros20.view.activities.Login.LoginActivity;
 
 public class DialogoAdminOpcFragment extends DialogFragment {
 
@@ -58,6 +60,7 @@ public class DialogoAdminOpcFragment extends DialogFragment {
         });
 
         binding.btnSalir.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), LoginActivity.class));
             getActivity().finish();
             dismiss();
         });

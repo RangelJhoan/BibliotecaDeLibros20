@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/usuMisLibrosFragment"
-        android:name="com.example.bibliotecadelibros20.view.fragments.usuario.UsuMisLibrosFragment"
+        android:name="com.example.bibliotecadelibros20.view.fragments.usuario.librosprestados.UsuMisLibrosFragment"
         android:label="fragment_usu_mis_libros"
         tools:layout="@layout/fragment_usu_mis_libros" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/usuLibrosDisponiblesFragment"
-        android:name="com.example.bibliotecadelibros20.view.fragments.usuario.UsuLibrosDisponiblesFragment"
+        android:name="com.example.bibliotecadelibros20.view.fragments.usuario.librosdisponibles.UsuLibrosDisponiblesFragment"
         android:label="fragment_usu_libros_disponibles"
         tools:layout="@layout/fragment_usu_libros_disponibles" >
         <action

@@ -8,7 +8,7 @@ public class Usuario {
     private String telefono;
     private String direccion;
     private String clave;
-    private Usuario usuario;
+    private TipoUsuario tipoUsuario;
 
     public Usuario() {
 
@@ -62,12 +62,11 @@ public class Usuario {
         this.clave = clave;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
-
 }

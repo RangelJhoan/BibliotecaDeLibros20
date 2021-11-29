@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,6 +28,8 @@ import java.util.ArrayList;
 public class AdminActualizarLibroFragment extends Fragment implements AdminView {
     FragmentAdminActualizarLibroBinding binding;
     AdminPresenter presenter;
+    Libro libro;
+    NavController navController;
 
     public AdminActualizarLibroFragment() {
 
@@ -56,11 +57,11 @@ public class AdminActualizarLibroFragment extends Fragment implements AdminView 
         super.onViewCreated(view, savedInstanceState);
         binding.toolbar.ivPerfil.setImageResource(R.drawable.icon_administrador);
         presenter = new AdminPresenterImpl(this);
-        NavController navController = Navigation.findNavController(view);
+        navController = Navigation.findNavController(view);
 
         Bundle bundle = getArguments();
         if (bundle != null) {
-            Libro libro = (Libro) bundle.getSerializable("libro");
+            libro = (Libro) bundle.getSerializable("libro");
 
             binding.etNombre.setText(libro.getTitulo());
             binding.etAutor.setText(libro.getAutor().getNombre());
@@ -69,25 +70,11 @@ public class AdminActualizarLibroFragment extends Fragment implements AdminView 
             binding.etImagen.setText(libro.getImagen());
             binding.etDescripcion.setText(libro.getDescripcion());
 
-            binding.btnActualizarLibro.setOnClickListener(v -> {
-                EditText[] editTexts = {binding.etNombre, binding.etAutor, binding.etCantidadLibros, binding.etUrlLibro, binding.etImagen, binding.etDescripcion};
-                if(Validaciones.validarCampos(editTexts)){
-                    Autor autor = new Autor();
-                    libro.setTitulo(binding.etNombre.getText().toString());
-                    autor.setNombre(binding.etAutor.getText().toString());
-                    libro.setAutor(autor);
-                    libro.setCantidad(Integer.parseInt(binding.etCantidadLibros.getText().toString()));
-                    libro.setUrl(binding.etUrlLibro.getText().toString());
-                    libro.setImagen(binding.etImagen.getText().toString());
-                    libro.setDescripcion(binding.etDescripcion.getText().toString());
-
-                    presenter.actualizarLibro(getContext(), libro);
-                    navController.navigate(R.id.adminLibrosDisponiblesFragment);
-                }else{
-                    Toast.makeText(getContext(), "Por favor llene todos los campos", Toast.LENGTH_SHORT).show();
-                }
-            });
         }
+
+        binding.btnActualizarLibro.setOnClickListener(v -> {
+            actualizarLibro();
+        });
 
         binding.toolbar.btnMas.setVisibility(View.GONE);
         binding.toolbar.btnAtras.setVisibility(View.VISIBLE);
@@ -95,6 +82,25 @@ public class AdminActualizarLibroFragment extends Fragment implements AdminView 
             navController.navigate(R.id.adminLibrosDisponiblesFragment);
         });
 
+    }
+
+    private void actualizarLibro() {
+        EditText[] editTexts = {binding.etNombre, binding.etAutor, binding.etCantidadLibros, binding.etUrlLibro, binding.etImagen, binding.etDescripcion};
+        if (Validaciones.validarCampos(editTexts)) {
+            Autor autor = new Autor();
+            libro.setTitulo(binding.etNombre.getText().toString());
+            autor.setNombre(binding.etAutor.getText().toString());
+            libro.setAutor(autor);
+            libro.setCantidad(Integer.parseInt(binding.etCantidadLibros.getText().toString()));
+            libro.setUrl(binding.etUrlLibro.getText().toString());
+            libro.setImagen(binding.etImagen.getText().toString());
+            libro.setDescripcion(binding.etDescripcion.getText().toString());
+
+            presenter.actualizarLibro(getContext(), libro);
+            navController.navigate(R.id.adminLibrosDisponiblesFragment);
+        } else {
+            Toast.makeText(getContext(), "Por favor llene todos los campos", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

@@ -19,7 +19,4 @@ public interface AdminPresenter {
 
     void mostrarLibrosPrestados(ArrayList<Prestamo> listaPrestamo);
 
-    //Usuario
-    void prestarLibro(Context context, Libro libro, int id_usuario);
-    void consultarLibrosPrestadosUsu(Context context, int id_usuario);
 }

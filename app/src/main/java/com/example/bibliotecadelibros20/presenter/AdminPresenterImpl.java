@@ -57,23 +57,9 @@ public class AdminPresenterImpl implements AdminPresenter {
     }
 
     @Override
-    public void prestarLibro(Context context, Libro libro, int id_usuario) {
-        if(interactor != null){
-            interactor.prestarLibro(context, libro, id_usuario);
-        }
-    }
-
-    @Override
     public void mostrarLibrosPrestados(ArrayList<Prestamo> listaPrestamo) {
         if(view != null){
             view.mostrarLibrosPrestados(listaPrestamo);
-        }
-    }
-
-    @Override
-    public void consultarLibrosPrestadosUsu(Context context, int id_usuario) {
-        if(interactor != null){
-            interactor.consultarLibrosPrestadosUsu(context,id_usuario);
         }
     }
 

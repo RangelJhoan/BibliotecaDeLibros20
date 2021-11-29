@@ -1,4 +1,4 @@
-package com.example.bibliotecadelibros20.view.fragments.usuario;
+package com.example.bibliotecadelibros20.view.fragments.usuario.librosdisponibles;
 
 import android.os.Bundle;
 
@@ -24,12 +24,12 @@ import com.example.bibliotecadelibros20.view.adapters.AdaptadorLibrosDisponibles
 
 import java.util.ArrayList;
 
-public class UsuLibrosDisponiblesFragment extends Fragment implements AdminView {
+public class UsuLibrosDisponiblesFragment extends Fragment implements UsuLibrosDisponiblesMVP.View {
 
     FragmentUsuLibrosDisponiblesBinding binding;
     AdaptadorLibrosDisponibles adaptadorLibrosDisponibles;
     View vista;
-    AdminPresenter presenter;
+    UsuLibrosDisponiblesMVP.Presenter presenter;
 
     public UsuLibrosDisponiblesFragment() {
     }
@@ -56,7 +56,7 @@ public class UsuLibrosDisponiblesFragment extends Fragment implements AdminView 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         vista = view;
-        presenter = new AdminPresenterImpl(this);
+        presenter = new UsuLibrosDisponiblesPresenterImpl(this);
         presenter.consultarLibros(getContext());
 
         final NavController navController = Navigation.findNavController(view);
@@ -66,11 +66,6 @@ public class UsuLibrosDisponiblesFragment extends Fragment implements AdminView 
         binding.toolbar.btnAtras.setOnClickListener(v -> {
             navController.navigate(R.id.usuMisLibrosFragment);
         });
-
-    }
-
-    @Override
-    public void mostrarResultado(String resultado) {
 
     }
 
@@ -89,10 +84,5 @@ public class UsuLibrosDisponiblesFragment extends Fragment implements AdminView 
         });
 
         binding.rvLibrosDisponibles.setAdapter(adaptadorLibrosDisponibles);
-    }
-
-    @Override
-    public void mostrarLibrosPrestados(ArrayList<Prestamo> listaPrestamo) {
-
     }
 }

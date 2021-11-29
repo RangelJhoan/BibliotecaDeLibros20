@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import android.view.WindowManager;
 
 import com.example.bibliotecadelibros20.R;
 import com.example.bibliotecadelibros20.databinding.FragmentDialogoUsuOpcBinding;
+import com.example.bibliotecadelibros20.view.activities.Login.LoginActivity;
 
 public class DialogoUsuOpcFragment extends DialogFragment {
 
@@ -47,6 +49,7 @@ public class DialogoUsuOpcFragment extends DialogFragment {
 
     private void eventoBotones() {
         binding.btnSalir.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), LoginActivity.class));
             getActivity().finish();
             dismiss();
         });

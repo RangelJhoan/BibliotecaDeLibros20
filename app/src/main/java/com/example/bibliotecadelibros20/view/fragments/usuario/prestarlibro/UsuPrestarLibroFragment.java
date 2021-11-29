@@ -23,6 +23,8 @@ public class UsuPrestarLibroFragment extends Fragment implements PrestarLibroMVP
 
     FragmentUsuPrestarLibroBinding binding;
     PrestarLibroMVP.Presenter presenter;
+    NavController navController;
+    Libro libro;
 
     public UsuPrestarLibroFragment() {
 
@@ -48,13 +50,21 @@ public class UsuPrestarLibroFragment extends Fragment implements PrestarLibroMVP
         binding.toolbar.ivPerfil.setImageResource(R.drawable.icon_lector);
         binding.toolbar.btnMas.setVisibility(View.GONE);
         binding.toolbar.btnAtras.setVisibility(View.VISIBLE);
-        final NavController navController = Navigation.findNavController(view);
+        navController = Navigation.findNavController(view);
         binding.toolbar.btnAtras.setOnClickListener(v -> {
             navController.navigate(R.id.usuLibrosDisponiblesFragment);
         });
 
+        mostrarLibro();
+
+        binding.footer.btnPrestar.setOnClickListener(v -> {
+            prestarLibro();
+        });
+
+    }
+
+    private void mostrarLibro() {
         Bundle bundle = getArguments();
-        Libro libro = new Libro();
         if (bundle != null) {
             libro = (Libro) bundle.getSerializable("libro");
             Glide.with(getContext())
@@ -65,18 +75,16 @@ public class UsuPrestarLibroFragment extends Fragment implements PrestarLibroMVP
             binding.tvAutorLibro.setText(libro.getAutor().getNombre());
             binding.tvDescripcion.setText(libro.getDescripcion());
         }
+    }
 
-        Libro finalLibro = libro;
-
-        binding.footer.btnPrestar.setOnClickListener(v -> {
-            presenter.prestarLibro(getContext(), finalLibro, Sesion.usuario.getId());
-        });
-
+    private void prestarLibro() {
+        presenter.prestarLibro(getContext(), libro, Sesion.usuario.getId());
     }
 
     @Override
     public void mostrarResultado(String resultado) {
         Toast.makeText(getContext(), resultado, Toast.LENGTH_SHORT).show();
+        navController.navigate(R.id.usuMisLibrosFragment);
     }
     //Atribución error: <a href="https://es.vecteezy.com/vectores-gratis/dise%C3%B1o">Diseño Vectores por Vecteezy</a>
 }

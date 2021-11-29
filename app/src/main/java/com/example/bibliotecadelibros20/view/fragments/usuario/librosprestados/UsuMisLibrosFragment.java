@@ -1,4 +1,4 @@
-package com.example.bibliotecadelibros20.view.fragments.usuario;
+package com.example.bibliotecadelibros20.view.fragments.usuario.librosprestados;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.example.bibliotecadelibros20.R;
 import com.example.bibliotecadelibros20.databinding.FragmentUsuMisLibrosBinding;
@@ -29,13 +28,13 @@ import com.example.bibliotecadelibros20.view.adapters.AdaptadorPrestamosLL;
 
 import java.util.ArrayList;
 
-public class UsuMisLibrosFragment extends Fragment implements AdminView {
+public class UsuMisLibrosFragment extends Fragment implements UsuMisLibrosMVP.View {
 
     FragmentUsuMisLibrosBinding binding;
     IComunicaFragments iComunicaFragments;
     Activity actividad;
     AdaptadorPrestamosLL adaptadorPrestamosLL;
-    AdminPresenter presenter;
+    UsuMisLibrosMVP.Presenter presenter;
 
     public UsuMisLibrosFragment() {
     }
@@ -55,8 +54,8 @@ public class UsuMisLibrosFragment extends Fragment implements AdminView {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        presenter = new AdminPresenterImpl(this);
-        presenter.consultarLibrosPrestadosUsu(getContext(), Sesion.usuario.getId());
+        presenter = new UsuMisLibrosPresenterImpl(this);
+        presenter.consultarLibrosPrestados(getContext(), Sesion.usuario.getId());
         binding.toolbar.ivPerfil.setImageResource(R.drawable.icon_lector);
         final NavController navController = Navigation.findNavController(view);
         binding.toolbar.btnMas.setOnClickListener(v -> {
@@ -74,16 +73,6 @@ public class UsuMisLibrosFragment extends Fragment implements AdminView {
             this.actividad = (Activity) context;
             iComunicaFragments = (IComunicaFragments) actividad;
         }
-    }
-
-    @Override
-    public void mostrarResultado(String resultado) {
-
-    }
-
-    @Override
-    public void mostrarLibros(ArrayList<Libro> listaLibros) {
-
     }
 
     @Override
