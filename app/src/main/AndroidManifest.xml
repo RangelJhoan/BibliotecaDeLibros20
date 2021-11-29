@@ -14,7 +14,8 @@
         android:theme="@style/Theme.BibliotecaDeLibros20">
         <activity
             android:name=".view.activities.registro.RegistrarseActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".view.activities.AdministradorActivity"
             android:exported="true"/>
@@ -23,7 +24,8 @@
             android:exported="true" />
         <activity
             android:name=".view.activities.Login.LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

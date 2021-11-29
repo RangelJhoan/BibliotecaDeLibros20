@@ -47,9 +47,9 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(UtilidadesDB.CREAR_TABLA_AUTOR);
         db.execSQL(UtilidadesDB.CREAR_TABLA_LIBRO);
         db.execSQL(UtilidadesDB.CREAR_TABLA_PRESTAMO);
-        db.execSQL("insert into usuario (nombre,correo_electronico, clave, id_tipo_usuario) values('Admin','admin','admin','2')");
         db.execSQL("insert into tipo_usuario (descripcion) values('usuario')");
         db.execSQL("insert into tipo_usuario (descripcion) values('admin')");
+        db.execSQL("insert into usuario (nombre,correo_electronico, clave, id_tipo_usuario) values('Admin','admin','admin','2')");
     }
 
     @Override
@@ -59,9 +59,9 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + UtilidadesDB.AUTOR_TABLA);
         db.execSQL("DROP TABLE IF EXISTS " + UtilidadesDB.LIBRO_TABLA);
         db.execSQL("DROP TABLE IF EXISTS " + UtilidadesDB.PRESTAMO_TABLA);
-        db.execSQL("insert into usuario (nombre,correo_electronico, clave, id_tipo_usuario) values('Admin','admin','admin','2')");
         db.execSQL("insert into tipo_usuario (descripcion) values('usuario')");
         db.execSQL("insert into tipo_usuario (descripcion) values('admin')");
+        db.execSQL("insert into usuario (nombre,correo_electronico, clave, id_tipo_usuario) values('Admin','admin','admin','2')");
         onCreate(db);
     }
 
@@ -84,16 +84,17 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
 
     public int iniciarSesion(String correo, String clave) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT u.id, u.nombre, t.id " +
+        Cursor cursor = db.rawQuery("SELECT u.id, u.nombre, t.id, t.descripcion " +
                 "FROM " + UtilidadesDB.TABLA_USUARIO + " u " +
                 "JOIN " + UtilidadesDB.TABLA_TIPO_USUARIO + " t ON  t.id = u.id_tipo_usuario " +
                 "WHERE " + UtilidadesDB.CAMPO_CORREO_ELECTRONICO + " = ? and " + UtilidadesDB.CAMPO_CLAVE + " = ?", new String[]{correo, clave});
         if (cursor.moveToFirst()) {
-            int id_tipo_usuario = cursor.getInt(0);
             Sesion.usuario.setId(cursor.getInt(0));
             Sesion.usuario.setNombre(cursor.getString(1));
+            int id_tipo_usuario = cursor.getInt(2);
             TipoUsuario tipoUsuario = new TipoUsuario();
-            tipoUsuario.setId(cursor.getInt(2));
+            tipoUsuario.setId(id_tipo_usuario);
+            tipoUsuario.setDescripcion(cursor.getString(3));
             Sesion.usuario.setTipoUsuario(tipoUsuario);
 
             return id_tipo_usuario;
