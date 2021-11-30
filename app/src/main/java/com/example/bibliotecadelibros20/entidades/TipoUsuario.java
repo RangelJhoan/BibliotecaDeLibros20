@@ -1,6 +1,8 @@
 package com.example.bibliotecadelibros20.entidades;
 
-public class TipoUsuario {
+import java.io.Serializable;
+
+public class TipoUsuario implements Serializable {
     private int id;
     private String descripcion;
 

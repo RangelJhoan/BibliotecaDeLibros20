@@ -301,5 +301,44 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
         return listaLibros;
     }
 
+    public ArrayList<Prestamo> consultarLibrosPrestados(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Prestamo> listaLibrosPrestados = new ArrayList<>();
+        Libro libro = null;
+        Prestamo prestamo = null;
+        Autor autor = null;
+        Usuario usuario = null;
+
+        Cursor cursor = db.rawQuery("SELECT DISTINCT l.titulo, l.imagen, l.descripcion, a.nombre, u.nombre, u.telefono, u.correo_electronico, l.id " +
+                "FROM libro l " +
+                "JOIN autor a ON a.id = l.id_autor " +
+                "JOIN prestamo p ON p.id_libro = l.id " +
+                "JOIN usuario u ON u.id = p.id_usuario", null);
+        while (cursor.moveToNext()) {
+            libro = new Libro();
+            prestamo = new Prestamo();
+            autor = new Autor();
+            usuario = new Usuario();
+
+            libro.setTitulo(cursor.getString(0));
+            libro.setImagen(cursor.getString(1));
+            libro.setDescripcion(cursor.getString(2));
+            autor.setNombre(cursor.getString(3));
+            usuario.setNombre(cursor.getString(4));
+            usuario.setTelefono(cursor.getString(5));
+            usuario.setCorreo_electronico(cursor.getString(6));
+            libro.setId(cursor.getInt(7));
+            libro.setAutor(autor);
+
+            prestamo.setLibro(libro);
+            prestamo.setUsuario(usuario);
+
+            listaLibrosPrestados.add(prestamo);
+
+        }
+        cursor.close();
+        db.close();
+        return listaLibrosPrestados;
+    }
 
 }

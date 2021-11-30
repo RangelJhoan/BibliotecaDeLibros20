@@ -1,6 +1,8 @@
 package com.example.bibliotecadelibros20.entidades;
 
-public class Prestamo {
+import java.io.Serializable;
+
+public class Prestamo implements Serializable {
     private int id;
     private Usuario usuario;
     private Libro libro;
