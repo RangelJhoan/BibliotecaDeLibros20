@@ -1,4 +1,4 @@
-package com.example.bibliotecadelibros20.view.fragments.administrador;
+package com.example.bibliotecadelibros20.view.fragments.administrador.actualizarlibro;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,17 +17,13 @@ import com.example.bibliotecadelibros20.R;
 import com.example.bibliotecadelibros20.databinding.FragmentAdminActualizarLibroBinding;
 import com.example.bibliotecadelibros20.entidades.Autor;
 import com.example.bibliotecadelibros20.entidades.Libro;
-import com.example.bibliotecadelibros20.entidades.Prestamo;
-import com.example.bibliotecadelibros20.interfaces.AdminPresenter;
-import com.example.bibliotecadelibros20.interfaces.AdminView;
-import com.example.bibliotecadelibros20.presenter.AdminPresenterImpl;
 import com.example.bibliotecadelibros20.utilidades.Validaciones;
 
 import java.util.ArrayList;
 
-public class AdminActualizarLibroFragment extends Fragment implements AdminView {
+public class AdminActualizarLibroFragment extends Fragment implements ActualizarLibroMVP.View {
     FragmentAdminActualizarLibroBinding binding;
-    AdminPresenter presenter;
+    ActualizarLibroMVP.Presenter presenter;
     Libro libro;
     NavController navController;
 
@@ -56,7 +52,7 @@ public class AdminActualizarLibroFragment extends Fragment implements AdminView 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.toolbar.ivPerfil.setImageResource(R.drawable.icon_administrador);
-        presenter = new AdminPresenterImpl(this);
+        presenter = new ActualizarLibroPresenterImpl(this);
         navController = Navigation.findNavController(view);
 
         Bundle bundle = getArguments();
@@ -106,15 +102,5 @@ public class AdminActualizarLibroFragment extends Fragment implements AdminView 
     @Override
     public void mostrarResultado(String resultado) {
         Toast.makeText(getContext(), resultado, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void mostrarLibros(ArrayList<Libro> listaLibros) {
-
-    }
-
-    @Override
-    public void mostrarLibrosPrestados(ArrayList<Prestamo> listaPrestamo) {
-
     }
 }

@@ -17,12 +17,8 @@ import android.view.ViewGroup;
 
 import com.example.bibliotecadelibros20.R;
 import com.example.bibliotecadelibros20.databinding.FragmentUsuMisLibrosBinding;
-import com.example.bibliotecadelibros20.entidades.Libro;
 import com.example.bibliotecadelibros20.entidades.Prestamo;
-import com.example.bibliotecadelibros20.interfaces.AdminPresenter;
-import com.example.bibliotecadelibros20.interfaces.AdminView;
 import com.example.bibliotecadelibros20.interfaces.IComunicaFragments;
-import com.example.bibliotecadelibros20.presenter.AdminPresenterImpl;
 import com.example.bibliotecadelibros20.utilidades.Sesion;
 import com.example.bibliotecadelibros20.view.adapters.AdaptadorPrestamosLL;
 

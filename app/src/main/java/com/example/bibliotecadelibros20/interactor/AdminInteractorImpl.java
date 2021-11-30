@@ -38,24 +38,13 @@ public class AdminInteractorImpl implements AdminInteractor {
 
     @Override
     public void actualizarLibro(Context context, Libro libro) {
-        conn = ConexionSQLiteHelper.getInstance(context);
-        long respuesta = conn.actualizarLibro(libro);
-        if (respuesta > 0) {
-            adminPresenter.mostrarResultado("Se editó el libro correctamente");
-        } else {
-            adminPresenter.mostrarResultado("No se pudo editar el libro");
-        }
+
     }
 
     @Override
     public void consultarLibros(Context context) {
         conn = ConexionSQLiteHelper.getInstance(context);
         adminPresenter.mostrarLibros(conn.consultarLibros());
-    }
-
-    @Override
-    public void consultarLibrosPrestados(Context context) {
-
     }
 
 }

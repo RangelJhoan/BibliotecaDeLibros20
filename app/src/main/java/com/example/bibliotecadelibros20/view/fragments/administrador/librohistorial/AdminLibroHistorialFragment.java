@@ -1,4 +1,4 @@
-package com.example.bibliotecadelibros20.view.fragments.administrador;
+package com.example.bibliotecadelibros20.view.fragments.administrador.librohistorial;
 
 import android.os.Bundle;
 
@@ -14,8 +14,6 @@ import android.view.ViewGroup;
 
 import com.example.bibliotecadelibros20.R;
 import com.example.bibliotecadelibros20.databinding.FragmentAdminLibroHistorialBinding;
-
-import javax.security.auth.callback.Callback;
 
 public class AdminLibroHistorialFragment extends Fragment {
     FragmentAdminLibroHistorialBinding binding;

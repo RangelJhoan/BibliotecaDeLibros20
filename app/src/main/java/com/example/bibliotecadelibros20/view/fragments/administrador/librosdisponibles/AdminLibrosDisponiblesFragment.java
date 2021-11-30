@@ -1,4 +1,4 @@
-package com.example.bibliotecadelibros20.view.fragments.administrador;
+package com.example.bibliotecadelibros20.view.fragments.administrador.librosdisponibles;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,23 +14,18 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.bibliotecadelibros20.R;
 import com.example.bibliotecadelibros20.databinding.FragmentAdminLibrosDisponiblesBinding;
 import com.example.bibliotecadelibros20.entidades.Libro;
-import com.example.bibliotecadelibros20.entidades.Prestamo;
-import com.example.bibliotecadelibros20.interfaces.AdminPresenter;
-import com.example.bibliotecadelibros20.interfaces.AdminView;
 import com.example.bibliotecadelibros20.interfaces.IComunicaFragments;
-import com.example.bibliotecadelibros20.presenter.AdminPresenterImpl;
 import com.example.bibliotecadelibros20.view.adapters.AdaptadorLibrosDisponibles;
 
 import java.util.ArrayList;
 
-public class AdminLibrosDisponiblesFragment extends Fragment implements AdminView {
+public class AdminLibrosDisponiblesFragment extends Fragment implements LibrosDisponiblesMVP.View {
 
-    private AdminPresenter presenter;
+    private LibrosDisponiblesMVP.Presenter presenter;
     FragmentAdminLibrosDisponiblesBinding binding;
     AdaptadorLibrosDisponibles adaptadorLibrosDisponibles;
     IComunicaFragments iComunicaFragments;
@@ -57,8 +52,8 @@ public class AdminLibrosDisponiblesFragment extends Fragment implements AdminVie
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        presenter = new AdminPresenterImpl(this);
-        presenter.consultarLibros(getContext());
+        presenter = new LibrosDisponiblesPresenterImpl(this);
+        presenter.consultarLibrosDisponibles(getContext());
         vista = view;
 
         abrirOpciones(view);
@@ -68,11 +63,6 @@ public class AdminLibrosDisponiblesFragment extends Fragment implements AdminVie
         binding.toolbar.btnMas.setOnClickListener(view -> {
             iComunicaFragments.abrirDialog(navView);
         });
-    }
-
-    @Override
-    public void mostrarResultado(String resultado) {
-
     }
 
     @Override
@@ -90,11 +80,6 @@ public class AdminLibrosDisponiblesFragment extends Fragment implements AdminVie
         });
 
         binding.rvLibrosDisponibles.setAdapter(adaptadorLibrosDisponibles);
-    }
-
-    @Override
-    public void mostrarLibrosPrestados(ArrayList<Prestamo> listaPrestamo) {
-
     }
 
     @Override

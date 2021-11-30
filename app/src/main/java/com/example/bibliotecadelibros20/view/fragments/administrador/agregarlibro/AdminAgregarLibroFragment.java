@@ -1,4 +1,4 @@
-package com.example.bibliotecadelibros20.view.fragments.administrador;
+package com.example.bibliotecadelibros20.view.fragments.administrador.agregarlibro;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,16 +17,12 @@ import com.example.bibliotecadelibros20.R;
 import com.example.bibliotecadelibros20.databinding.FragmentAdminAgregarLibroBinding;
 import com.example.bibliotecadelibros20.entidades.Autor;
 import com.example.bibliotecadelibros20.entidades.Libro;
-import com.example.bibliotecadelibros20.entidades.Prestamo;
-import com.example.bibliotecadelibros20.interfaces.AdminPresenter;
-import com.example.bibliotecadelibros20.interfaces.AdminView;
-import com.example.bibliotecadelibros20.presenter.AdminPresenterImpl;
 import com.example.bibliotecadelibros20.utilidades.Validaciones;
 
 import java.util.ArrayList;
 
-public class AdminAgregarLibroFragment extends Fragment implements AdminView {
-    private AdminPresenter presenter;
+public class AdminAgregarLibroFragment extends Fragment implements AgregarLibroMVP.View {
+    private AgregarLibroMVP.Presenter presenter;
     FragmentAdminAgregarLibroBinding binding;
 
     public AdminAgregarLibroFragment() {
@@ -49,7 +45,7 @@ public class AdminAgregarLibroFragment extends Fragment implements AdminView {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.toolbar.ivPerfil.setImageResource(R.drawable.icon_administrador);
-        presenter = new AdminPresenterImpl(this);
+        presenter = new AgregarLibroPresenterImpl(this);
         final NavController navController = Navigation.findNavController(view);
 
         binding.toolbar.btnMas.setVisibility(View.GONE);
@@ -91,13 +87,4 @@ public class AdminAgregarLibroFragment extends Fragment implements AdminView {
         Toast.makeText(getContext(), resultado, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void mostrarLibros(ArrayList<Libro> listaLibros) {
-
-    }
-
-    @Override
-    public void mostrarLibrosPrestados(ArrayList<Prestamo> listaPrestamo) {
-
-    }
 }
