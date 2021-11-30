@@ -17,19 +17,19 @@ public class PrestarLibroModelImpl implements PrestarLibroMVP.Model {
     @Override
     public void prestarLibro(Context context, Libro libro, int id_usuario) {
         conn = ConexionSQLiteHelper.getInstance(context);
-        if (Validaciones.validarPrestamo(context, libro)) {
-            if (Validaciones.verificarPrestamo(context, id_usuario, libro)) {
-                long res = conn.prestarLibro(libro,id_usuario);
+        if (Validaciones.verificarPrestamo(context, id_usuario, libro)) {
+            if (Validaciones.validarPrestamo(context, libro)) {
+                long res = conn.prestarLibro(libro, id_usuario);
                 if (res > 0) {
                     presenter.mostrarResultado("Se prestó correctamente el libro");
                 } else {
-                    presenter.mostrarResultado("No se prestó el libro");
+                    presenter.mostrarError("No se prestó el libro");
                 }
             } else {
-                presenter.mostrarResultado("Ya haz registrado este libro previamente");
+                presenter.mostrarError("Cantidad de libros no disponible para prestar");
             }
         } else {
-            presenter.mostrarResultado("Cantidad de libros no disponible para prestar");
+            presenter.mostrarError("Ya haz registrado este libro previamente");
         }
     }
 }

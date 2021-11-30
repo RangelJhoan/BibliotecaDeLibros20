@@ -15,6 +15,7 @@ import com.example.bibliotecadelibros20.entidades.TipoUsuario;
 import com.example.bibliotecadelibros20.entidades.Usuario;
 import com.example.bibliotecadelibros20.utilidades.Sesion;
 import com.example.bibliotecadelibros20.utilidades.UtilidadesDB;
+import com.example.bibliotecadelibros20.utilidades.Validaciones;
 
 import java.util.ArrayList;
 
@@ -183,7 +184,7 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
 
     //ADMINISTRADOR
 
-    public long agregarLibro(Libro libro){
+    public long agregarLibro(Libro libro) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor cursor = db.rawQuery("SELECT id FROM autor WHERE nombre = ?", new String[]{String.valueOf(libro.getAutor().getNombre())});
@@ -228,53 +229,62 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
         }
     }
 
-    public long actualizarLibro(Libro libro){
+    public long actualizarLibro(Context context, Libro libroNuevo, Libro libroAntiguo) {
         SQLiteDatabase db = this.getWritableDatabase();
+        if (Validaciones.validarCantidadLibrosPrestados(context, libroNuevo)) {
+            if (Validaciones.validarNombreLibro(context, libroAntiguo.getTitulo(), libroNuevo.getTitulo(), libroNuevo.getAutor().getNombre())) {
+                Cursor cursor = db.rawQuery("SELECT id FROM autor WHERE nombre = ?", new String[]{String.valueOf(libroNuevo.getAutor().getNombre())});
+                String[] where = {String.valueOf(libroNuevo.getId())};
 
-        Cursor cursor = db.rawQuery("SELECT id FROM autor WHERE nombre = ?", new String[]{String.valueOf(libro.getAutor().getNombre())});
-        String[] where = {String.valueOf(libro.getId())};
+                if (cursor.moveToFirst()) {
+                    ContentValues values = new ContentValues();
+                    values.put(UtilidadesDB.LIBRO_TITULO, libroNuevo.getTitulo());
+                    values.put(UtilidadesDB.LIBRO_DESCRIPCION, libroNuevo.getDescripcion());
+                    values.put(UtilidadesDB.LIBRO_URL, libroNuevo.getUrl());
+                    values.put(UtilidadesDB.LIBRO_CANTIDAD, libroNuevo.getCantidad());
+                    values.put(UtilidadesDB.LIBRO_IMAGEN, libroNuevo.getImagen());
+                    values.put(UtilidadesDB.LIBRO_FORANEA_AUTOR, cursor.getInt(0));
 
-        if (cursor.moveToFirst()) {
-            ContentValues values = new ContentValues();
-            values.put(UtilidadesDB.LIBRO_TITULO, libro.getTitulo());
-            values.put(UtilidadesDB.LIBRO_DESCRIPCION, libro.getDescripcion());
-            values.put(UtilidadesDB.LIBRO_URL, libro.getUrl());
-            values.put(UtilidadesDB.LIBRO_CANTIDAD, libro.getCantidad());
-            values.put(UtilidadesDB.LIBRO_IMAGEN, libro.getImagen());
-            values.put(UtilidadesDB.LIBRO_FORANEA_AUTOR, cursor.getInt(0));
+                    long respuesta = db.update(UtilidadesDB.LIBRO_TABLA, values, UtilidadesDB.LIBRO_ID + " = ?", where);
 
-            long respuesta = db.update(UtilidadesDB.LIBRO_TABLA, values, UtilidadesDB.LIBRO_ID + " = ?", where);
+                    db.close();
+                    cursor.close();
+                    return respuesta;
+                } else {
+                    ContentValues valuesAutor = new ContentValues();
+                    valuesAutor.put(UtilidadesDB.AUTOR_NOMBRE, libroNuevo.getAutor().getNombre());
 
-            db.close();
-            cursor.close();
-            return respuesta;
-        } else {
-            ContentValues valuesAutor = new ContentValues();
-            valuesAutor.put(UtilidadesDB.AUTOR_NOMBRE, libro.getAutor().getNombre());
+                    long resAutor = db.insert(UtilidadesDB.AUTOR_TABLA, UtilidadesDB.AUTOR_ID, valuesAutor);
 
-            long resAutor = db.insert(UtilidadesDB.AUTOR_TABLA, UtilidadesDB.AUTOR_ID, valuesAutor);
-
-            if (resAutor > 0) {
-                ContentValues values = new ContentValues();
-                values.put(UtilidadesDB.LIBRO_TITULO, libro.getTitulo());
-                values.put(UtilidadesDB.LIBRO_DESCRIPCION, libro.getDescripcion());
-                values.put(UtilidadesDB.LIBRO_URL, libro.getUrl());
-                values.put(UtilidadesDB.LIBRO_CANTIDAD, libro.getCantidad());
-                values.put(UtilidadesDB.LIBRO_IMAGEN, libro.getImagen());
-                values.put(UtilidadesDB.LIBRO_FORANEA_AUTOR, resAutor);
-                long respuesta = db.update(UtilidadesDB.LIBRO_TABLA, values, UtilidadesDB.LIBRO_ID + " = ?", where);
+                    if (resAutor > 0) {
+                        ContentValues values = new ContentValues();
+                        values.put(UtilidadesDB.LIBRO_TITULO, libroNuevo.getTitulo());
+                        values.put(UtilidadesDB.LIBRO_DESCRIPCION, libroNuevo.getDescripcion());
+                        values.put(UtilidadesDB.LIBRO_URL, libroNuevo.getUrl());
+                        values.put(UtilidadesDB.LIBRO_CANTIDAD, libroNuevo.getCantidad());
+                        values.put(UtilidadesDB.LIBRO_IMAGEN, libroNuevo.getImagen());
+                        values.put(UtilidadesDB.LIBRO_FORANEA_AUTOR, resAutor);
+                        long respuesta = db.update(UtilidadesDB.LIBRO_TABLA, values, UtilidadesDB.LIBRO_ID + " = ?", where);
+                        db.close();
+                        cursor.close();
+                        return respuesta;
+                    } else {
+                        db.close();
+                        cursor.close();
+                        return resAutor;
+                    }
+                }
+            }else{
                 db.close();
-                cursor.close();
-                return respuesta;
-            } else {
-                db.close();
-                cursor.close();
-                return resAutor;
+                return -2; //-2 El nombre del libro y el nombre del autor coinciden con otro libro
             }
+        } else {
+            db.close();
+            return -1; //-1 La cantidad de libros del libro a editar no puede ser menor a la cantidad de libros ya prestados.
         }
     }
 
-    public ArrayList<Libro> consultarLibros(){
+    public ArrayList<Libro> consultarLibros() {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Libro> listaLibros = new ArrayList<>();
         Libro libro = null;
@@ -301,7 +311,7 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
         return listaLibros;
     }
 
-    public ArrayList<Prestamo> consultarLibrosPrestados(){
+    public ArrayList<Prestamo> consultarLibrosPrestados() {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Prestamo> listaLibrosPrestados = new ArrayList<>();
         Libro libro = null;

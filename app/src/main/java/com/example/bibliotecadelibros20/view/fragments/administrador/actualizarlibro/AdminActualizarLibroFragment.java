@@ -19,12 +19,11 @@ import com.example.bibliotecadelibros20.entidades.Autor;
 import com.example.bibliotecadelibros20.entidades.Libro;
 import com.example.bibliotecadelibros20.utilidades.Validaciones;
 
-import java.util.ArrayList;
-
 public class AdminActualizarLibroFragment extends Fragment implements ActualizarLibroMVP.View {
     FragmentAdminActualizarLibroBinding binding;
     ActualizarLibroMVP.Presenter presenter;
     Libro libro;
+    Libro libroAntiguo = null;
     NavController navController;
 
     public AdminActualizarLibroFragment() {
@@ -81,19 +80,27 @@ public class AdminActualizarLibroFragment extends Fragment implements Actualizar
     }
 
     private void actualizarLibro() {
-        EditText[] editTexts = {binding.etNombre, binding.etAutor, binding.etCantidadLibros, binding.etUrlLibro, binding.etImagen, binding.etDescripcion};
+
+        try {
+            libroAntiguo = libro.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
+        EditText[]
+        editTexts = {binding.etNombre, binding.etAutor, binding.etCantidadLibros, binding.etUrlLibro, binding.etImagen, binding.etDescripcion};
         if (Validaciones.validarCampos(editTexts)) {
             Autor autor = new Autor();
-            libro.setTitulo(binding.etNombre.getText().toString());
+            Libro libroNuevo = new Libro();
+            libroNuevo.setTitulo(binding.etNombre.getText().toString());
             autor.setNombre(binding.etAutor.getText().toString());
-            libro.setAutor(autor);
-            libro.setCantidad(Integer.parseInt(binding.etCantidadLibros.getText().toString()));
-            libro.setUrl(binding.etUrlLibro.getText().toString());
-            libro.setImagen(binding.etImagen.getText().toString());
-            libro.setDescripcion(binding.etDescripcion.getText().toString());
+            libroNuevo.setAutor(autor);
+            libroNuevo.setCantidad(Integer.parseInt(binding.etCantidadLibros.getText().toString()));
+            libroNuevo.setUrl(binding.etUrlLibro.getText().toString());
+            libroNuevo.setImagen(binding.etImagen.getText().toString());
+            libroNuevo.setDescripcion(binding.etDescripcion.getText().toString());
 
-            presenter.actualizarLibro(getContext(), libro);
-            navController.navigate(R.id.adminLibrosDisponiblesFragment);
+            presenter.actualizarLibro(getContext(), libroNuevo, libroAntiguo);
         } else {
             Toast.makeText(getContext(), "Por favor llene todos los campos", Toast.LENGTH_SHORT).show();
         }
@@ -102,5 +109,11 @@ public class AdminActualizarLibroFragment extends Fragment implements Actualizar
     @Override
     public void mostrarResultado(String resultado) {
         Toast.makeText(getContext(), resultado, Toast.LENGTH_SHORT).show();
+        navController.navigate(R.id.adminLibrosDisponiblesFragment);
+    }
+
+    @Override
+    public void mostrarError(String error) {
+        Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
     }
 }

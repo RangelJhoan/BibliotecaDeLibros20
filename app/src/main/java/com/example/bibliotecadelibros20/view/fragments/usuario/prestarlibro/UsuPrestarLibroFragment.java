@@ -86,5 +86,10 @@ public class UsuPrestarLibroFragment extends Fragment implements PrestarLibroMVP
         Toast.makeText(getContext(), resultado, Toast.LENGTH_SHORT).show();
         navController.navigate(R.id.usuMisLibrosFragment);
     }
+
+    @Override
+    public void mostrarError(String error) {
+        Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+    }
     //Atribución error: <a href="https://es.vecteezy.com/vectores-gratis/dise%C3%B1o">Diseño Vectores por Vecteezy</a>
 }

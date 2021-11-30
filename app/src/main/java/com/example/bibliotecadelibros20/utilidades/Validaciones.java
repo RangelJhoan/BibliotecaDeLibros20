@@ -119,5 +119,37 @@ public class Validaciones {
         }
     }
 
+    public static boolean validarCantidadLibrosPrestados(Context context, Libro libro) {
+        conn = ConexionSQLiteHelper.getInstance(context);
+        SQLiteDatabase db = conn.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT COUNT(id) FROM prestamo WHERE id_libro = ?", new String[] {String.valueOf(libro.getId())});
+        if(cursor.moveToFirst()){
+            int cantidadLibrosPrestados = cursor.getInt(0);
+            if(cantidadLibrosPrestados <= libro.getCantidad()){
+                cursor.close();
+                return true;
+            }else {
+                Toast.makeText(context, "Cantidad de libros no válida. Hay " + cantidadLibrosPrestados + " libros prestados", Toast.LENGTH_LONG).show();
+                cursor.close();
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public static boolean validarNombreLibro(Context context, String nombreLibroActual, String nombreLibroNuevo, String autor) {
+        conn = ConexionSQLiteHelper.getInstance(context);
+        if (!nombreLibroNuevo.equals(nombreLibroActual)) {
+            SQLiteDatabase db = conn.getReadableDatabase();
+            Cursor cursor = db.rawQuery("SELECT l.id " +
+                    "FROM " + UtilidadesDB.LIBRO_TABLA + " l " +
+                    "JOIN " + UtilidadesDB.AUTOR_TABLA + " a ON a.id = l.id_autor " +
+                    "WHERE " + UtilidadesDB.LIBRO_TITULO + " = ? and " + UtilidadesDB.AUTOR_NOMBRE + " = ?", new String[]{nombreLibroNuevo, autor});
+            if (cursor.moveToNext()) {
+                return false;
+            }
+        }
+        return true;
+    }
 
 }

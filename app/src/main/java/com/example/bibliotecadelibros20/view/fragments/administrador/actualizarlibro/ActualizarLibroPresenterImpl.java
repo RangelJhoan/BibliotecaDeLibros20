@@ -22,9 +22,16 @@ public class ActualizarLibroPresenterImpl implements ActualizarLibroMVP.Presente
     }
 
     @Override
-    public void actualizarLibro(Context context, Libro libro) {
+    public void mostrarError(String error) {
+        if(view != null){
+            view.mostrarError(error);
+        }
+    }
+
+    @Override
+    public void actualizarLibro(Context context, Libro libroNuevo, Libro libroAntiguo) {
         if(model != null){
-            model.actualizarLibro(context, libro);
+            model.actualizarLibro(context, libroNuevo, libroAntiguo);
         }
     }
 }

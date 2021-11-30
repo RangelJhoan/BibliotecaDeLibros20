@@ -22,6 +22,13 @@ public class PrestarLibroPresenterImpl implements PrestarLibroMVP.Presenter {
     }
 
     @Override
+    public void mostrarError(String error) {
+        if (view != null) {
+            view.mostrarError(error);
+        }
+    }
+
+    @Override
     public void prestarLibro(Context context, Libro libro, int id_usuario) {
         if(model != null){
             model.prestarLibro(context, libro, id_usuario);

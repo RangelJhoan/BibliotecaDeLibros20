@@ -2,7 +2,7 @@ package com.example.bibliotecadelibros20.entidades;
 
 import java.io.Serializable;
 
-public class Libro implements Serializable {
+public class Libro implements Serializable, Cloneable {
 
     private int id;
     private String titulo;
@@ -13,6 +13,16 @@ public class Libro implements Serializable {
     private Autor autor;
 
     public Libro() {
+    }
+
+    public Libro(int id, String titulo, String descripcion, String url, int cantidad, String imagen, Autor autor) {
+        this.id = id;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.url = url;
+        this.cantidad = cantidad;
+        this.imagen = imagen;
+        this.autor = autor;
     }
 
     public int getId() {
@@ -70,4 +80,12 @@ public class Libro implements Serializable {
     public void setAutor(Autor autor) {
         this.autor = autor;
     }
+
+    @Override
+    public Libro clone() throws CloneNotSupportedException {
+
+        Libro libroNuevo = new Libro(this.id, this.titulo, this.descripcion, this.url, this.cantidad, this.imagen, this.autor);
+        return libroNuevo;
+    }
+
 }

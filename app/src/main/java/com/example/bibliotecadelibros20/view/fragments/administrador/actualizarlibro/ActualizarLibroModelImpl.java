@@ -15,13 +15,17 @@ public class ActualizarLibroModelImpl implements ActualizarLibroMVP.Model{
     }
 
     @Override
-    public void actualizarLibro(Context context, Libro libro) {
+    public void actualizarLibro(Context context, Libro libroNuevo, Libro libroAntiguo) {
         conn = ConexionSQLiteHelper.getInstance(context);
-        long respuesta = conn.actualizarLibro(libro);
+        long respuesta = conn.actualizarLibro(context, libroNuevo, libroAntiguo);
         if (respuesta > 0) {
             presenter.mostrarResultado("Se editó el libro correctamente");
         } else {
-            presenter.mostrarResultado("No se pudo editar el libro");
+            if(respuesta == -1){
+                presenter.mostrarError("La cantidad de libros del libro a editar no puede ser menor a la cantidad de libros ya prestados");
+            }else if(respuesta == -2){
+                presenter.mostrarError("El nombre del libro y el nombre del autor coinciden con otro libro, indique la edición");
+            }
         }
     }
 }
